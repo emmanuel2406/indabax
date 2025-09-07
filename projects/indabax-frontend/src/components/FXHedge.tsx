@@ -8,6 +8,7 @@ import { AlgorandClient } from '@algorandfoundation/algokit-utils'
 import ContractForm from './ContractForm'
 import RateDashboard from './RateDashboard'
 import indabaxLogo from '../assets/indabax-logo.png'
+import { useContracts } from '../contexts/ContractContext'
 
 interface FXHedgeInterface {
   openModal: boolean
@@ -29,9 +30,9 @@ const FXHedge = ({ openModal, setModalState }: FXHedgeInterface) => {
     durationDays: ''
   })
   const [premium, setPremium] = useState<number>(0)
-  const [contracts, setContracts] = useState<any[]>([])
   const { enqueueSnackbar } = useSnackbar()
   const { transactionSigner, activeAddress } = useWallet()
+  const { contracts, addContract } = useContracts()
 
   const algodConfig = getAlgodConfigFromViteEnvironment()
   const indexerConfig = getIndexerConfigFromViteEnvironment()
@@ -106,7 +107,6 @@ const FXHedge = ({ openModal, setModalState }: FXHedgeInterface) => {
       })
 
       const newContract = {
-        id: Date.now(),
         baselineRate: baselineRate.toString(),
         targetRate: formData.targetRate,
         notionalAmount: formData.notionalAmount,
@@ -116,7 +116,7 @@ const FXHedge = ({ openModal, setModalState }: FXHedgeInterface) => {
         createdAt: new Date().toISOString()
       }
 
-      setContracts(prev => [...prev, newContract])
+      addContract(newContract)
 
       // Deduct premium from ZAR wallet
       if ((window as any).userWallet?.deductPremium) {
@@ -230,8 +230,18 @@ const FXHedge = ({ openModal, setModalState }: FXHedgeInterface) => {
           ) : (
             <div className="space-y-4">
               {contracts.map((contract) => (
-                <div key={contract.id} className="border border-pink-500/20 rounded-lg p-4 bg-gray-700">
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                <div key={contract.id} className="border border-pink-500/20 rounded-lg p-4 bg-gray-700 relative">
+                  {/* Color indicator */}
+                  <div
+                    className="absolute top-0 left-0 w-full h-1 rounded-t-lg"
+                    style={{ backgroundColor: contract.color }}
+                  ></div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4">
+                    <div>
+                      <span className="text-sm font-medium text-gray-400">Baseline Rate:</span>
+                      <p className="text-lg font-semibold text-white">{contract.baselineRate} USD/ZAR</p>
+                    </div>
                     <div>
                       <span className="text-sm font-medium text-gray-400">Target Rate:</span>
                       <p className="text-lg font-semibold text-white">{contract.targetRate} USD/ZAR</p>

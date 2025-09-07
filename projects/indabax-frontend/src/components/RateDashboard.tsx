@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { useContracts } from '../contexts/ContractContext';
 
 interface RateData {
   date: string;
@@ -48,6 +49,7 @@ const RateDashboard: React.FC<RateDashboardProps> = ({ onRateUpdate }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { contracts } = useContracts();
 
   // Load mock data (replace with CSV loading in production)
   useEffect(() => {
@@ -155,6 +157,19 @@ const RateDashboard: React.FC<RateDashboardProps> = ({ onRateUpdate }) => {
   // Calculate statistics
   const currentRate = displayedData.length > 0 ? displayedData[displayedData.length - 1].rate : 0;
 
+  // Create contract legend data
+  const contractLegend = contracts.reduce((acc, contract) => {
+    const baselineRate = parseFloat(contract.baselineRate);
+    if (!acc.find(item => item.baselineRate === baselineRate)) {
+      acc.push({
+        baselineRate,
+        color: contract.color,
+        count: contracts.filter(c => parseFloat(c.baselineRate) === baselineRate).length
+      });
+    }
+    return acc;
+  }, [] as Array<{ baselineRate: number; color: string; count: number }>);
+
   return (
     <div className="w-full max-w-6xl mx-auto p-6">
       <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg shadow-lg p-6 border border-pink-500/20">
@@ -212,6 +227,37 @@ const RateDashboard: React.FC<RateDashboardProps> = ({ onRateUpdate }) => {
             </LineChart>
           </ResponsiveContainer>
         </div>
+
+        {/* Contract Legend */}
+        {contractLegend.length > 0 && (
+          <div className="mt-6 p-4 bg-gray-700 rounded-lg border border-pink-500/20">
+            <h3 className="text-lg font-semibold text-pink-400 mb-3">Active Contract Baseline Rates</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+              {contractLegend.map((item, index) => (
+                <div key={index} className="flex items-center gap-3 p-2 bg-gray-600 rounded">
+                  <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 16 16">
+                    <circle
+                      cx="8"
+                      cy="8"
+                      r="6"
+                      fill={item.color}
+                      stroke="white"
+                      strokeWidth="2"
+                    />
+                  </svg>
+                  <div>
+                    <div className="text-sm font-medium text-white">
+                      {item.baselineRate.toFixed(4)} USD/ZAR
+                    </div>
+                    <div className="text-xs text-gray-400">
+                      {item.count} contract{item.count !== 1 ? 's' : ''}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="mt-6 text-center">
           <div className="inline-flex items-center gap-2 text-sm text-gray-300">
