@@ -1,11 +1,11 @@
-from algopy import ARC4Contract, String, UInt64, Txn, Global, arc4
+from algopy import ARC4Contract, String, UInt64, Txn, Global, arc4, subroutine
 from algopy.arc4 import abimethod
 
 
 RATE_PRECISION = 10000
 
 class FXHedgeContract(ARC4Contract):
-    """FX Hedging Smart Contract for SME currency risk management"""
+    """FX Hedging Smart Contract for SME currency risk management - Updated with sophisticated premium calculation"""
     @abimethod()
     def create_contract(
         self,
@@ -21,8 +21,8 @@ class FXHedgeContract(ARC4Contract):
         assert notional_amount > 0, "Notional amount must be positive"
         assert duration_days > 0, "Duration must be positive"
 
-        # Calculate premium (3% of notional for now - can be made dynamic)
-        premium = notional_amount * 3 // 100
+        # Calculate premium using the sophisticated formula
+        premium = self.calculate_premium(notional_amount, baseline_rate, duration_days)
 
         # Store contract details in global state
         # Note: In a real implementation, you'd use proper state management
@@ -31,13 +31,58 @@ class FXHedgeContract(ARC4Contract):
         return String("Contract created successfully")
     
     @abimethod()
-    def calculate_premium(self, notional_amount: UInt64, baseline_rate: UInt64) -> UInt64:
-        """Calculate the premium amount in ZAR (3% of notional amount converted to ZAR)"""
-        # Convert USD notional to ZAR using baseline rate
-        notional_in_zar = notional_amount * baseline_rate // RATE_PRECISION
-        # Calculate 3% premium in ZAR
-        return notional_in_zar * 3 // 100
+    def calculate_premium(
+        self, 
+        notional_amount: UInt64, 
+        baseline_rate: UInt64, 
+        duration_days: UInt64
+    ) -> UInt64:
+        """Calculate the premium amount using a sophisticated insurance formula
+        In deployment, these values will be adaptive and estimated from historical data of the user"""
+        # Mock values for volatility and safety factor (in basis points)
+        # 20% volatility = 2000 basis points
+        sigma_bps = UInt64(2000)  # 20% volatility
+        # 1.20x safety factor = 12000 basis points  
+        alpha_bps = UInt64(12000)  # 1.20x safety factor
+
+        # Constants
+        BPS_SCALE = UInt64(10000)  # 1.00 = 10000 bps
+        DAYS_PER_YEAR = UInt64(365)
+
+        # Calculate time fraction T/365
+        T_frac = duration_days * 10000 // DAYS_PER_YEAR  # Scale by 10000 for precision
+        sqrt_T = self._integer_sqrt(T_frac)
+        # Core formula: N * sigma * sqrt(T/365) * alpha
+        # Formula: (N * sigma_bps * alpha_bps * sqrt_T) / (BPS_SCALE * BPS_SCALE)
+        numerator = notional_amount * sigma_bps * alpha_bps * sqrt_T
+        denominator = BPS_SCALE * BPS_SCALE
+
+        premium = numerator // denominator
+        return premium
     
+    @subroutine
+    def _integer_sqrt(self, x: UInt64) -> UInt64:
+        """Integer square root using binary search - compatible with AlgoPy"""
+        if x == 0:
+            return UInt64(0)
+        
+        # Binary search for square root
+        left = UInt64(1)
+        right = x
+        
+        while left <= right:
+            mid = (left + right) // 2
+            square = mid * mid
+            
+            if square == x:
+                return mid
+            elif square < x:
+                left = mid + 1
+            else:
+                right = mid - 1
+        
+        return right
+
     @abimethod()
     def simulate_settlement(
         self,
@@ -84,7 +129,7 @@ class FXHedgeContract(ARC4Contract):
         duration_days: UInt64
     ) -> String:
         """Get a summary of contract parameters"""
-        premium = notional_amount * 3 // 100
+        premium = self.calculate_premium(notional_amount, baseline_rate, duration_days)
         return String("Contract summary calculated successfully")
     
     @abimethod()

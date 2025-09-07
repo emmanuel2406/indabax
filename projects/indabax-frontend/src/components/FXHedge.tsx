@@ -53,7 +53,7 @@ const FXHedge = ({ openModal, setModalState }: FXHedgeInterface) => {
   }
 
   const calculatePremium = async () => {
-    if (!formData.notionalAmount || !formData.baselineRate) return
+    if (!formData.notionalAmount || !formData.baselineRate || !formData.durationDays) return
 
     const factory = new FxHedgeContractFactory({
       defaultSender: activeAddress ?? undefined,
@@ -70,7 +70,8 @@ const FXHedge = ({ openModal, setModalState }: FXHedgeInterface) => {
       const response = await appClient.send.calculatePremium({
         args: {
           notionalAmount: BigInt(formData.notionalAmount),
-          baselineRate: convertRateToScaled(formData.baselineRate)
+          baselineRate: convertRateToScaled(formData.baselineRate),
+          durationDays: BigInt(formData.durationDays)
         }
       })
 
