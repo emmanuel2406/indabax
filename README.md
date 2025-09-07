@@ -1,6 +1,10 @@
 # IndabaX
 
-A full stack Algorand dApp built with AlgoKit. This project includes smart contracts and a React frontend for interacting with the Algorand blockchain.
+Our project provides FX risk protection for businesses in emerging markets that earn local currency (like ZAR) but owe expenses in hard currency (like USD). These firms are highly exposed to sudden devaluations, which can turn a profitable invoice into a major loss. Traditional hedging products (forwards, swaps) are either inaccessible or too expensive for SMEs.
+
+
+
+We solve this by offering a parametric FX insurance contract on Algorand. SMEs pay a small upfront premium, and if the exchange rate moves beyond an agreed threshold, the policy automatically pays out in USD stablecoins. This gives SMEs certainty — they know their maximum downside in advance — while also keeping premiums affordable.
 
 ## Prerequisites
 
