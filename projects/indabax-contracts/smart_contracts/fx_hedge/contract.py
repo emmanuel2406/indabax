@@ -2,7 +2,7 @@ from algopy import ARC4Contract, String, UInt64, Txn, Global, arc4
 from algopy.arc4 import abimethod
 
 
-RATE_PRECISION = UInt64(10000)
+RATE_PRECISION = 10000
 
 class FXHedgeContract(ARC4Contract):
     """FX Hedging Smart Contract for SME currency risk management"""
@@ -31,9 +31,12 @@ class FXHedgeContract(ARC4Contract):
         return String("Contract created successfully")
     
     @abimethod()
-    def calculate_premium(self, notional_amount: UInt64) -> UInt64:
-        """Calculate the premium amount (3% of notional)"""
-        return notional_amount * 3 // 100
+    def calculate_premium(self, notional_amount: UInt64, baseline_rate: UInt64) -> UInt64:
+        """Calculate the premium amount in ZAR (3% of notional amount converted to ZAR)"""
+        # Convert USD notional to ZAR using baseline rate
+        notional_in_zar = notional_amount * baseline_rate // RATE_PRECISION
+        # Calculate 3% premium in ZAR
+        return notional_in_zar * 3 // 100
     
     @abimethod()
     def simulate_settlement(

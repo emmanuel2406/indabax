@@ -5,6 +5,7 @@ import { FxHedgeContractFactory } from '../contracts/FXHedgeContract'
 import { OnSchemaBreak, OnUpdate } from '@algorandfoundation/algokit-utils/types/app'
 import { getAlgodConfigFromViteEnvironment, getIndexerConfigFromViteEnvironment } from '../utils/network/getAlgoClientConfigs'
 import { AlgorandClient } from '@algorandfoundation/algokit-utils'
+import ContractForm from './ContractForm'
 
 interface FXHedgeInterface {
   openModal: boolean
@@ -52,7 +53,7 @@ const FXHedge = ({ openModal, setModalState }: FXHedgeInterface) => {
   }
 
   const calculatePremium = async () => {
-    if (!formData.notionalAmount) return
+    if (!formData.notionalAmount || !formData.baselineRate) return
 
     const factory = new FxHedgeContractFactory({
       defaultSender: activeAddress ?? undefined,
@@ -67,7 +68,10 @@ const FXHedge = ({ openModal, setModalState }: FXHedgeInterface) => {
 
       const { appClient } = deployResult
       const response = await appClient.send.calculatePremium({
-        args: { notionalAmount: BigInt(formData.notionalAmount) }
+        args: {
+          notionalAmount: BigInt(formData.notionalAmount),
+          baselineRate: convertRateToScaled(formData.baselineRate)
+        }
       })
 
       setPremium(Number(response.return))
@@ -113,7 +117,13 @@ const FXHedge = ({ openModal, setModalState }: FXHedgeInterface) => {
       }
 
       setContracts(prev => [...prev, newContract])
-      enqueueSnackbar(`Contract created successfully! Premium: ${premium}`, { variant: 'success' })
+
+      // Deduct premium from ZAR wallet
+      if ((window as any).userWallet?.deductPremium) {
+        (window as any).userWallet.deductPremium(premium)
+      }
+
+      enqueueSnackbar(`Contract created successfully! Premium: R${premium.toLocaleString()} deducted from ZAR wallet`, { variant: 'success' })
 
       // Reset form
       setFormData({
@@ -153,7 +163,31 @@ const FXHedge = ({ openModal, setModalState }: FXHedgeInterface) => {
         }
       })
 
-      enqueueSnackbar(`Simulation result: ${response.return}`, { variant: 'info' })
+      const actualRateFloat = parseFloat(actualRate)
+      const targetRateFloat = parseFloat(contract.targetRate)
+      const notionalAmountFloat = parseFloat(contract.notionalAmount)
+
+      // Check if contract succeeds (actual rate > target rate)
+      if (actualRateFloat > targetRateFloat) {
+        // Calculate the amount to transfer from ZAR to USD
+        // The notional amount represents the USD amount we want to hedge
+        const zarAmountToTransfer = notionalAmountFloat * targetRateFloat
+
+        // Handle wallet settlement
+        if ((window as any).userWallet?.handleSettlement) {
+          (window as any).userWallet.handleSettlement(zarAmountToTransfer, targetRateFloat)
+        }
+
+        enqueueSnackbar(
+          `Contract SUCCESS! Transferred R${zarAmountToTransfer.toLocaleString()} to USD wallet at rate ${targetRateFloat}. Simulation: ${response.return}`,
+          { variant: 'success' }
+        )
+      } else {
+        enqueueSnackbar(
+          `Contract FAILED! Rate ${actualRateFloat} did not exceed target ${targetRateFloat}. No transfer occurred. Simulation: ${response.return}`,
+          { variant: 'error' }
+        )
+      }
     } catch (e: any) {
       enqueueSnackbar(`Error simulating settlement: ${e.message}`, { variant: 'error' })
     }
@@ -168,82 +202,14 @@ const FXHedge = ({ openModal, setModalState }: FXHedgeInterface) => {
         </div>
 
         {/* Create Contract Form */}
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Create New FX Hedge Contract</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Baseline Rate (USD/ZAR)</label>
-              <input
-                type="number"
-                step="0.0001"
-                placeholder="e.g., 18.5000"
-                className="input input-bordered w-full"
-                value={formData.baselineRate}
-                onChange={(e) => setFormData(prev => ({ ...prev, baselineRate: e.target.value }))}
-              />
-              <p className="text-xs text-gray-500 mt-1">Enter rate with up to 4 decimal places</p>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Target Rate (USD/ZAR)</label>
-              <input
-                type="number"
-                step="0.0001"
-                placeholder="e.g., 19.0000"
-                className="input input-bordered w-full"
-                value={formData.targetRate}
-                onChange={(e) => setFormData(prev => ({ ...prev, targetRate: e.target.value }))}
-              />
-              <p className="text-xs text-gray-500 mt-1">Enter rate with up to 4 decimal places</p>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Notional Amount (USD)</label>
-              <input
-                type="number"
-                placeholder="e.g., 100000"
-                className="input input-bordered w-full"
-                value={formData.notionalAmount}
-                onChange={(e) => setFormData(prev => ({ ...prev, notionalAmount: e.target.value }))}
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Duration (Days)</label>
-              <input
-                type="number"
-                placeholder="e.g., 30"
-                className="input input-bordered w-full"
-                value={formData.durationDays}
-                onChange={(e) => setFormData(prev => ({ ...prev, durationDays: e.target.value }))}
-              />
-            </div>
-          </div>
-
-          <div className="mt-4 flex gap-4">
-            <button
-              className="btn btn-outline"
-              onClick={calculatePremium}
-              disabled={!formData.notionalAmount}
-            >
-              Calculate Premium
-            </button>
-            {premium > 0 && (
-              <div className="flex items-center">
-                <span className="text-lg font-semibold text-green-600">
-                  Premium: ${premium.toLocaleString()}
-                </span>
-              </div>
-            )}
-          </div>
-
-          <div className="mt-6">
-            <button
-              className="btn btn-primary w-full"
-              onClick={createContract}
-              disabled={loading || !formData.baselineRate || !formData.targetRate || !formData.notionalAmount || !formData.durationDays}
-            >
-              {loading ? <span className="loading loading-spinner" /> : 'Create Contract'}
-            </button>
-          </div>
-        </div>
+        <ContractForm
+          formData={formData}
+          setFormData={setFormData}
+          premium={premium}
+          loading={loading}
+          onCalculatePremium={calculatePremium}
+          onCreateContract={createContract}
+        />
 
         {/* Contracts List */}
         <div className="bg-white rounded-lg shadow-lg p-6">
@@ -269,7 +235,7 @@ const FXHedge = ({ openModal, setModalState }: FXHedgeInterface) => {
                     </div>
                     <div>
                       <span className="text-sm font-medium text-gray-600">Premium:</span>
-                      <p className="text-lg font-semibold text-green-600">${contract.premium.toLocaleString()}</p>
+                      <p className="text-lg font-semibold text-green-600">R{contract.premium.toLocaleString()}</p>
                     </div>
                   </div>
 

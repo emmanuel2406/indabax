@@ -3,6 +3,7 @@ import { useWallet } from '@txnlab/use-wallet-react'
 import React, { useState } from 'react'
 import ConnectWallet from './components/ConnectWallet'
 import FXHedge from './components/FXHedge'
+import UserWallet from './components/UserWallet'
 
 interface HomeProps {}
 
@@ -16,7 +17,12 @@ const Home: React.FC<HomeProps> = () => {
   }
 
   if (showFXHedge && activeAddress) {
-    return <FXHedge openModal={false} setModalState={() => {}} />
+    return (
+      <>
+        <UserWallet />
+        <FXHedge openModal={false} setModalState={() => {}} />
+      </>
+    )
   }
 
   return (
