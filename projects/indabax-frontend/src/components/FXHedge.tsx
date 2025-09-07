@@ -32,7 +32,7 @@ const FXHedge = ({ openModal, setModalState }: FXHedgeInterface) => {
   const [premium, setPremium] = useState<number>(0)
   const { enqueueSnackbar } = useSnackbar()
   const { transactionSigner, activeAddress } = useWallet()
-  const { contracts, addContract } = useContracts()
+  const { contracts, addContract, removeContract } = useContracts()
 
   const algodConfig = getAlgodConfigFromViteEnvironment()
   const indexerConfig = getIndexerConfigFromViteEnvironment()
@@ -220,11 +220,15 @@ const FXHedge = ({ openModal, setModalState }: FXHedgeInterface) => {
           `Contract SUCCESS! Transferred R${zarAmountToTransfer.toLocaleString()} to USD wallet at rate ${targetRateFloat}. Simulation: ${response.return}`,
           { variant: 'success' }
         )
+        // Remove the contract from active list after simulation
+        removeContract(contract.id)
       } else {
         enqueueSnackbar(
           `Contract FAILED! Rate ${actualRateFloat} did not exceed target ${targetRateFloat}. No transfer occurred. Simulation: ${response.return}`,
           { variant: 'error' }
         )
+        // Remove the contract from active list after simulation
+        removeContract(contract.id)
       }
     } catch (e: any) {
       enqueueSnackbar(`Error simulating settlement: ${e.message}`, { variant: 'error' })

@@ -67,15 +67,15 @@ class FXHedgeContract(ARC4Contract):
         """Integer square root using binary search - compatible with AlgoPy"""
         if x == 0:
             return UInt64(0)
-        
+
         # Binary search for square root
         left = UInt64(1)
         right = x
-        
+
         while left <= right:
             mid = (left + right) // 2
             square = mid * mid
-            
+
             if square == x:
                 return mid
             elif square < x:
