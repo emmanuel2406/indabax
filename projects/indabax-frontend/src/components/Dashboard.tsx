@@ -27,7 +27,7 @@ const Dashboard: React.FC = () => {
 
   // If no wallet connected, show connection prompt
   return (
-    <div className="hero min-h-screen bg-animated noise-overlay">
+    <div className="hero min-h-screen noise-overlay">
       <div className="hero-content text-center rounded-lg p-8 max-w-2xl glass-card mx-auto">
         <div className="max-w-2xl">
           {/* Logo Section */}

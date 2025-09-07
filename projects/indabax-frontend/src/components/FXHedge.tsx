@@ -236,7 +236,7 @@ const FXHedge = ({ openModal, setModalState }: FXHedgeInterface) => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black p-4">
+    <div className="min-h-screen p-4">
       <div className="max-w-6xl mx-auto">
         {/* Header with Logo */}
         <div className="text-center mb-8">

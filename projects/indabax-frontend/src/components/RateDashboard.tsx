@@ -22,7 +22,7 @@ const generateMockData = (): RateData[] => {
   const startDate = new Date(today.toISOString().split('T')[0]);
   const baseRate = 18.5;
 
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 100; i++) {
     const currentDate = new Date(startDate);
     currentDate.setDate(startDate.getDate() + i);
 

@@ -140,8 +140,13 @@
 
   /* Animated Background */
   .bg-animated {
-    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(210 15% 7%) 50%, hsl(var(--background)) 100%);
-    background-size: 200% 200%;
+    background-image:
+      linear-gradient(135deg, hsl(var(--background) / 0.4) 0%, hsl(210 15% 7% / 0.4) 50%, hsl(var(--background) / 0.4) 100%),
+      url('../assets/background.jpg');
+    background-size: 200% 200%, cover;
+    background-position: 0% 50%, center center;
+    background-repeat: no-repeat, no-repeat;
+    background-attachment: scroll, fixed;
     animation: gradient-shift 8s ease infinite;
   }
 
@@ -182,8 +187,14 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    /* Fixed, full-screen background image with 50% opacity via overlay */
+    background-image: linear-gradient(rgba(0,0,0,0.30), rgba(0,0,0,0.30)), url('../assets/background.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 
   /* Scrollbar Styling */
