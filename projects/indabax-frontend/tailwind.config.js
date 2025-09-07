@@ -12,6 +12,12 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        surface: "hsl(var(--surface))",
+        // Gradient stop helpers for design system
+        'primary-glow': "hsl(var(--primary-glow))",
+        'primary-metallic': "hsl(var(--primary-metallic))",
+        'secondary-glow': "hsl(var(--secondary-glow))",
+        'secondary-metallic': "hsl(var(--secondary-metallic))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",

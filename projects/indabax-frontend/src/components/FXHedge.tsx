@@ -5,7 +5,7 @@ import { FxHedgeContractFactory } from '../contracts/FXHedgeContract'
 import { OnSchemaBreak, OnUpdate } from '@algorandfoundation/algokit-utils/types/app'
 import { getAlgodConfigFromViteEnvironment, getIndexerConfigFromViteEnvironment } from '../utils/network/getAlgoClientConfigs'
 import { AlgorandClient } from '@algorandfoundation/algokit-utils'
-import ContractForm from './ContractForm'
+import ContractFormDialog from './ContractForm'
 import RateDashboard from './RateDashboard'
 import indabaxLogo from '../assets/indabax-logo.png'
 import { useContracts } from '../contexts/ContractContext'
@@ -68,15 +68,15 @@ const FXHedge = ({ openModal, setModalState }: FXHedgeInterface) => {
 
       const { appClient } = deployResult
 
-      // Fix: Ensure proper integer conversion for baselineRate
-      const scaledBaselineRate = Math.round(baselineRate * RATE_PRECISION)
+      // Compute scaled target rate from form input (string)
+      const scaledTargetRate = convertRateToScaled(formData.targetRate)
 
       const response = await appClient.send.calculatePremium({
-        args: {
-          notionalAmount: BigInt(formData.notionalAmount),
-          baselineRate: BigInt(scaledBaselineRate), // Use the rounded integer value
-          durationDays: BigInt(formData.durationDays)
-        }
+        args: [
+          BigInt(formData.notionalAmount),
+          scaledTargetRate,
+          BigInt(formData.durationDays)
+        ]
       })
 
       console.log('calculatePremium: Response received', response.return)
@@ -95,19 +95,19 @@ const FXHedge = ({ openModal, setModalState }: FXHedgeInterface) => {
   useEffect(() => {
     console.log('useEffect: Checking conditions', {
       notionalAmount: formData.notionalAmount,
-      baselineRate,
+      targetRate: formData.targetRate,
       durationDays: formData.durationDays,
       activeAddress: !!activeAddress
     })
 
-    if (formData.notionalAmount && baselineRate && formData.durationDays && activeAddress) {
+    if (formData.notionalAmount && formData.targetRate && formData.durationDays && activeAddress) {
       console.log('useEffect: All conditions met, calling calculatePremium')
       calculatePremium()
     } else {
       console.log('useEffect: Conditions not met, setting premium to 0')
       setPremium(0)
     }
-  }, [formData.notionalAmount, baselineRate, formData.durationDays, activeAddress])
+  }, [formData.notionalAmount, formData.targetRate, formData.durationDays, activeAddress])
 
   const createContract = async () => {
     setLoading(true)
@@ -241,35 +241,34 @@ const FXHedge = ({ openModal, setModalState }: FXHedgeInterface) => {
               <img
                 src={indabaxLogo}
                 alt="IndabaX Logo"
-                className="w-12 h-12 mr-3 filter brightness-0 invert"
-                style={{
-                  filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%)'
-                }}
+                className="w-40 h-40 mr-3"
               />
-              <div className="absolute inset-0 w-12 h-12 mr-3 bg-pink-500/20 rounded-full blur-md"></div>
-            </div>
-            <div>
-              <h1 className="text-3xl font-bold text-pink-400 mb-1">
-                IndabaX
-              </h1>
-              <p className="text-xs text-pink-300/80 font-medium">
-                Democratizing Prosperity
-              </p>
+              <div className="absolute inset-0 w-40 h-40 mr-3 bg-green-500/20 rounded-full blur-md"></div>
             </div>
           </div>
           <h2 className="text-3xl font-bold text-white mb-2">FX Hedge Platform</h2>
           <p className="text-lg text-gray-300">SME Currency Risk Management Platform</p>
         </div>
 
+        {/* Create New Contract Button */}
+        <div className="mb-6 flex justify-center">
+          <button
+            onClick={() => setModalState(true)}
+            className="px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-all font-medium shadow-lg shadow-green-500/20"
+          >
+            Create New Hedge Contract
+          </button>
+        </div>
+
         {/* Contracts List */}
-        <div className="bg-gray-800 rounded-lg shadow-lg p-6 border border-pink-500/20">
-          <h2 className="text-2xl font-semibold text-pink-400 mb-4">Active Contracts</h2>
+        <div className="bg-gray-800 rounded-lg shadow-lg p-6 border border-green-500/20">
+          <h2 className="text-2xl font-semibold text-green-400 mb-4">Active Contracts</h2>
           {contracts.length === 0 ? (
             <p className="text-gray-400 text-center py-8">No contracts created yet</p>
           ) : (
             <div className="space-y-4">
               {contracts.map((contract) => (
-                <div key={contract.id} className="border border-pink-500/20 rounded-lg p-4 bg-gray-700 relative">
+                <div key={contract.id} className="border border-green-500/20 rounded-lg p-4 bg-gray-700 relative">
                   {/* Color indicator */}
                   <div
                     className="absolute top-0 left-0 w-full h-1 rounded-t-lg"
@@ -295,7 +294,7 @@ const FXHedge = ({ openModal, setModalState }: FXHedgeInterface) => {
                     </div>
                     <div>
                       <span className="text-sm font-medium text-gray-400">Premium:</span>
-                      <p className="text-lg font-semibold text-pink-400">R{contract.premium.toLocaleString()}</p>
+                      <p className="text-lg font-semibold text-green-400">R{contract.premium.toLocaleString()}</p>
                     </div>
                   </div>
 
@@ -304,7 +303,7 @@ const FXHedge = ({ openModal, setModalState }: FXHedgeInterface) => {
                       type="number"
                       step="0.0001"
                       placeholder="e.g., 19.2500"
-                      className="input input-bordered input-sm flex-1 bg-gray-600 border-pink-500/30 text-white placeholder-gray-400"
+                      className="input input-bordered input-sm flex-1 bg-gray-600 border-green-500/30 text-white placeholder-gray-400"
                       onKeyPress={(e) => {
                         if (e.key === 'Enter') {
                           const target = e.target as HTMLInputElement
@@ -313,7 +312,7 @@ const FXHedge = ({ openModal, setModalState }: FXHedgeInterface) => {
                       }}
                     />
                     <button
-                      className="btn btn-sm bg-pink-500 hover:bg-pink-600 text-white border-pink-500 hover:border-pink-600"
+                      className="btn btn-sm bg-green-500 hover:bg-green-600 text-white border-green-500 hover:border-green-600"
                       onClick={(e) => {
                         const input = (e.target as HTMLElement).parentElement?.querySelector('input') as HTMLInputElement
                         if (input?.value) {
@@ -332,13 +331,15 @@ const FXHedge = ({ openModal, setModalState }: FXHedgeInterface) => {
         </div>
 
         {/* Create Contract Form */}
-        <ContractForm
+        <ContractFormDialog
             formData={formData}
             setFormData={setFormData}
             baselineRate={baselineRate}
             premium={premium}
             loading={loading}
             onCreateContract={createContract}
+            isOpen={openModal}
+            onClose={() => setModalState(false)}
           />
       </div>
 

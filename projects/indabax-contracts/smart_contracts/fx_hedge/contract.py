@@ -34,16 +34,16 @@ class FXHedgeContract(ARC4Contract):
     def calculate_premium(
         self, 
         notional_amount: UInt64, 
-        baseline_rate: UInt64, 
+        target_rate: UInt64, 
         duration_days: UInt64
     ) -> UInt64:
         """Calculate the premium amount using a sophisticated insurance formula
         In deployment, these values will be adaptive and estimated from historical data of the user"""
         # Mock values for volatility and safety factor (in basis points)
-        # 20% volatility = 2000 basis points
-        sigma_bps = UInt64(2000)  # 20% volatility
-        # 1.20x safety factor = 12000 basis points  
-        alpha_bps = UInt64(12000)  # 1.20x safety factor
+        # 37% volatility = 3700 basis points
+        sigma_bps = UInt64(3700)  # 37% volatility
+        # 2.50x safety factor = 12000 basis points  
+        alpha_bps = UInt64(2500)  # 2.50x safety factor
 
         # Constants
         BPS_SCALE = UInt64(10000)  # 1.00 = 10000 bps
@@ -56,8 +56,8 @@ class FXHedgeContract(ARC4Contract):
         # Core formula: N * sigma * sqrt(T/365) * alpha * (baseline_rate / 10000)
         # The baseline_rate is used to scale the premium based on the current exchange rate
         # Formula: (N * sigma_bps * alpha_bps * sqrt_T * baseline_rate) / (BPS_SCALE * BPS_SCALE * BPS_SCALE)
-        numerator = notional_amount * sigma_bps * alpha_bps * sqrt_T * baseline_rate
-        denominator = BPS_SCALE * BPS_SCALE * BPS_SCALE
+        numerator = notional_amount * sigma_bps * alpha_bps * sqrt_T *  target_rate
+        denominator = BPS_SCALE * BPS_SCALE * 100
 
         premium = numerator // denominator
         return premium

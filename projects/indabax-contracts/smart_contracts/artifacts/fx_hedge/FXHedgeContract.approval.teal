@@ -1,0 +1,521 @@
+#pragma version 10
+#pragma typetrack false
+
+// algopy.arc4.ARC4Contract.approval_program() -> uint64:
+main:
+    intcblock 1 0 10000
+    bytecblock 0x151f7c75
+    // smart_contracts/fx_hedge/contract.py:7
+    // class FXHedgeContract(ARC4Contract):
+    txn NumAppArgs
+    bz main_bare_routing@11
+    pushbytess 0xd6485718 0x723713d3 0x49fe2c46 0x08c77219 0x7a4e70a3 0x6984ee1f // method "create_contract(uint64,uint64,uint64,uint64)string", method "calculate_premium(uint64,uint64,uint64)uint64", method "simulate_settlement(uint64,uint64,uint64)string", method "calculate_payout(uint64,uint64,uint64)uint64", method "get_contract_summary(uint64,uint64,uint64,uint64)string", method "convert_rate_to_decimal(uint64)uint64"
+    txna ApplicationArgs 0
+    match main_create_contract_route@3 main_calculate_premium_route@4 main_simulate_settlement_route@5 main_calculate_payout_route@6 main_get_contract_summary_route@7 main_convert_rate_to_decimal_route@8
+
+main_after_if_else@15:
+    // smart_contracts/fx_hedge/contract.py:7
+    // class FXHedgeContract(ARC4Contract):
+    intc_1 // 0
+    return
+
+main_convert_rate_to_decimal_route@8:
+    // smart_contracts/fx_hedge/contract.py:146
+    // @abimethod()
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/fx_hedge/contract.py:7
+    // class FXHedgeContract(ARC4Contract):
+    txna ApplicationArgs 1
+    btoi
+    // smart_contracts/fx_hedge/contract.py:146
+    // @abimethod()
+    callsub convert_rate_to_decimal
+    itob
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_0 // 1
+    return
+
+main_get_contract_summary_route@7:
+    // smart_contracts/fx_hedge/contract.py:134
+    // @abimethod()
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/fx_hedge/contract.py:7
+    // class FXHedgeContract(ARC4Contract):
+    txna ApplicationArgs 1
+    btoi
+    txna ApplicationArgs 2
+    btoi
+    txna ApplicationArgs 3
+    btoi
+    txna ApplicationArgs 4
+    btoi
+    // smart_contracts/fx_hedge/contract.py:134
+    // @abimethod()
+    callsub get_contract_summary
+    dup
+    len
+    itob
+    extract 6 2
+    swap
+    concat
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_0 // 1
+    return
+
+main_calculate_payout_route@6:
+    // smart_contracts/fx_hedge/contract.py:106
+    // @abimethod()
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/fx_hedge/contract.py:7
+    // class FXHedgeContract(ARC4Contract):
+    txna ApplicationArgs 1
+    btoi
+    txna ApplicationArgs 2
+    btoi
+    txna ApplicationArgs 3
+    btoi
+    // smart_contracts/fx_hedge/contract.py:106
+    // @abimethod()
+    callsub calculate_payout
+    itob
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_0 // 1
+    return
+
+main_simulate_settlement_route@5:
+    // smart_contracts/fx_hedge/contract.py:88
+    // @abimethod()
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/fx_hedge/contract.py:7
+    // class FXHedgeContract(ARC4Contract):
+    txna ApplicationArgs 1
+    btoi
+    txna ApplicationArgs 2
+    btoi
+    txna ApplicationArgs 3
+    btoi
+    // smart_contracts/fx_hedge/contract.py:88
+    // @abimethod()
+    callsub simulate_settlement
+    dup
+    len
+    itob
+    extract 6 2
+    swap
+    concat
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_0 // 1
+    return
+
+main_calculate_premium_route@4:
+    // smart_contracts/fx_hedge/contract.py:33
+    // @abimethod()
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/fx_hedge/contract.py:7
+    // class FXHedgeContract(ARC4Contract):
+    txna ApplicationArgs 1
+    btoi
+    txna ApplicationArgs 2
+    btoi
+    txna ApplicationArgs 3
+    btoi
+    // smart_contracts/fx_hedge/contract.py:33
+    // @abimethod()
+    callsub calculate_premium
+    itob
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_0 // 1
+    return
+
+main_create_contract_route@3:
+    // smart_contracts/fx_hedge/contract.py:9
+    // @abimethod()
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/fx_hedge/contract.py:7
+    // class FXHedgeContract(ARC4Contract):
+    txna ApplicationArgs 1
+    btoi
+    txna ApplicationArgs 2
+    btoi
+    txna ApplicationArgs 3
+    btoi
+    txna ApplicationArgs 4
+    btoi
+    // smart_contracts/fx_hedge/contract.py:9
+    // @abimethod()
+    callsub create_contract
+    dup
+    len
+    itob
+    extract 6 2
+    swap
+    concat
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_0 // 1
+    return
+
+main_bare_routing@11:
+    // smart_contracts/fx_hedge/contract.py:7
+    // class FXHedgeContract(ARC4Contract):
+    txn OnCompletion
+    bnz main_after_if_else@15
+    txn ApplicationID
+    !
+    assert // can only call when creating
+    intc_0 // 1
+    return
+
+
+// smart_contracts.fx_hedge.contract.FXHedgeContract.create_contract(baseline_rate: uint64, target_rate: uint64, notional_amount: uint64, duration_days: uint64) -> bytes:
+create_contract:
+    // smart_contracts/fx_hedge/contract.py:9-16
+    // @abimethod()
+    // def create_contract(
+    //     self,
+    //     baseline_rate: UInt64,  # Rate with 4 decimal places (e.g., 185000 for 18.5000)
+    //     target_rate: UInt64,    # Rate with 4 decimal places (e.g., 190000 for 19.0000)
+    //     notional_amount: UInt64,  # Amount in micro-units (e.g., 100000000 for $100)
+    //     duration_days: UInt64
+    // ) -> String:
+    proto 4 1
+    // smart_contracts/fx_hedge/contract.py:18-19
+    // # Validate inputs
+    // assert baseline_rate > 0, "Baseline rate must be positive"
+    frame_dig -4
+    assert // Baseline rate must be positive
+    // smart_contracts/fx_hedge/contract.py:20
+    // assert target_rate > 0, "Target rate must be positive"
+    frame_dig -3
+    assert // Target rate must be positive
+    // smart_contracts/fx_hedge/contract.py:21
+    // assert notional_amount > 0, "Notional amount must be positive"
+    frame_dig -2
+    assert // Notional amount must be positive
+    // smart_contracts/fx_hedge/contract.py:22
+    // assert duration_days > 0, "Duration must be positive"
+    frame_dig -1
+    assert // Duration must be positive
+    // smart_contracts/fx_hedge/contract.py:24-25
+    // # Calculate premium using the sophisticated formula
+    // premium = self.calculate_premium(notional_amount, baseline_rate, duration_days)
+    frame_dig -2
+    frame_dig -4
+    frame_dig -1
+    callsub calculate_premium
+    pop
+    // smart_contracts/fx_hedge/contract.py:31
+    // return String("Contract created successfully")
+    pushbytes "Contract created successfully"
+    retsub
+
+
+// smart_contracts.fx_hedge.contract.FXHedgeContract.calculate_premium(notional_amount: uint64, target_rate: uint64, duration_days: uint64) -> uint64:
+calculate_premium:
+    // smart_contracts/fx_hedge/contract.py:33-39
+    // @abimethod()
+    // def calculate_premium(
+    //     self,
+    //     notional_amount: UInt64,
+    //     target_rate: UInt64,
+    //     duration_days: UInt64
+    // ) -> UInt64:
+    proto 3 1
+    pushbytes ""
+    dupn 3
+    // smart_contracts/fx_hedge/contract.py:52-53
+    // # Calculate time fraction T/365
+    // T_frac = duration_days * 10000 // DAYS_PER_YEAR  # Scale by 10000 for precision
+    frame_dig -1
+    intc_2 // 10000
+    *
+    // smart_contracts/fx_hedge/contract.py:50
+    // DAYS_PER_YEAR = UInt64(365)
+    pushint 365 // 365
+    // smart_contracts/fx_hedge/contract.py:52-53
+    // # Calculate time fraction T/365
+    // T_frac = duration_days * 10000 // DAYS_PER_YEAR  # Scale by 10000 for precision
+    /
+    dup
+    // smart_contracts/fx_hedge/contract.py:68
+    // if x == 0:
+    bnz calculate_premium_after_if_else@3
+    // smart_contracts/fx_hedge/contract.py:69
+    // return UInt64(0)
+    intc_1 // 0
+
+calculate_premium_after_inlined_smart_contracts.fx_hedge.contract.FXHedgeContract._integer_sqrt@13:
+    // smart_contracts/fx_hedge/contract.py:56-59
+    // # Core formula: N * sigma * sqrt(T/365) * alpha * (baseline_rate / 10000)
+    // # The baseline_rate is used to scale the premium based on the current exchange rate
+    // # Formula: (N * sigma_bps * alpha_bps * sqrt_T * baseline_rate) / (BPS_SCALE * BPS_SCALE * BPS_SCALE)
+    // numerator = notional_amount * sigma_bps * alpha_bps * sqrt_T *  target_rate
+    frame_dig -3
+    // smart_contracts/fx_hedge/contract.py:42-44
+    // # Mock values for volatility and safety factor (in basis points)
+    // # 37% volatility = 3700 basis points
+    // sigma_bps = UInt64(3700)  # 37% volatility
+    pushint 3700 // 3700
+    // smart_contracts/fx_hedge/contract.py:56-59
+    // # Core formula: N * sigma * sqrt(T/365) * alpha * (baseline_rate / 10000)
+    // # The baseline_rate is used to scale the premium based on the current exchange rate
+    // # Formula: (N * sigma_bps * alpha_bps * sqrt_T * baseline_rate) / (BPS_SCALE * BPS_SCALE * BPS_SCALE)
+    // numerator = notional_amount * sigma_bps * alpha_bps * sqrt_T *  target_rate
+    *
+    // smart_contracts/fx_hedge/contract.py:45-46
+    // # 2.50x safety factor = 12000 basis points
+    // alpha_bps = UInt64(2500)  # 2.50x safety factor
+    pushint 2500 // 2500
+    // smart_contracts/fx_hedge/contract.py:56-59
+    // # Core formula: N * sigma * sqrt(T/365) * alpha * (baseline_rate / 10000)
+    // # The baseline_rate is used to scale the premium based on the current exchange rate
+    // # Formula: (N * sigma_bps * alpha_bps * sqrt_T * baseline_rate) / (BPS_SCALE * BPS_SCALE * BPS_SCALE)
+    // numerator = notional_amount * sigma_bps * alpha_bps * sqrt_T *  target_rate
+    *
+    *
+    frame_dig -2
+    *
+    // smart_contracts/fx_hedge/contract.py:60
+    // denominator = BPS_SCALE * BPS_SCALE * 100
+    pushint 10000000000 // 10000000000
+    // smart_contracts/fx_hedge/contract.py:62
+    // premium = numerator // denominator
+    /
+    // smart_contracts/fx_hedge/contract.py:63
+    // return premium
+    frame_bury 0
+    retsub
+
+calculate_premium_after_if_else@3:
+    // smart_contracts/fx_hedge/contract.py:71-72
+    // # Binary search for square root
+    // left = UInt64(1)
+    intc_0 // 1
+    frame_bury 0
+    frame_dig 4
+    frame_bury 2
+
+calculate_premium_while_top@4:
+    // smart_contracts/fx_hedge/contract.py:75
+    // while left <= right:
+    frame_dig 0
+    frame_dig 2
+    <=
+    bz calculate_premium_after_while@12
+    // smart_contracts/fx_hedge/contract.py:76
+    // mid = (left + right) // 2
+    frame_dig 0
+    frame_dig 2
+    +
+    pushint 2 // 2
+    /
+    dup
+    frame_bury 1
+    // smart_contracts/fx_hedge/contract.py:77
+    // square = mid * mid
+    dup
+    *
+    dup
+    frame_bury 3
+    // smart_contracts/fx_hedge/contract.py:79
+    // if square == x:
+    frame_dig 4
+    ==
+    bz calculate_premium_else_body@7
+    frame_dig 1
+    // smart_contracts/fx_hedge/contract.py:54
+    // sqrt_T = self._integer_sqrt(T_frac)
+    b calculate_premium_after_inlined_smart_contracts.fx_hedge.contract.FXHedgeContract._integer_sqrt@13
+
+calculate_premium_else_body@7:
+    // smart_contracts/fx_hedge/contract.py:81
+    // elif square < x:
+    frame_dig 3
+    frame_dig 4
+    <
+    bz calculate_premium_else_body@9
+    // smart_contracts/fx_hedge/contract.py:82
+    // left = mid + 1
+    frame_dig 1
+    intc_0 // 1
+    +
+    frame_bury 0
+    b calculate_premium_while_top@4
+
+calculate_premium_else_body@9:
+    // smart_contracts/fx_hedge/contract.py:84
+    // right = mid - 1
+    frame_dig 1
+    intc_0 // 1
+    -
+    frame_bury 2
+    b calculate_premium_while_top@4
+
+calculate_premium_after_while@12:
+    frame_dig 2
+    // smart_contracts/fx_hedge/contract.py:54
+    // sqrt_T = self._integer_sqrt(T_frac)
+    b calculate_premium_after_inlined_smart_contracts.fx_hedge.contract.FXHedgeContract._integer_sqrt@13
+
+
+// smart_contracts.fx_hedge.contract.FXHedgeContract.simulate_settlement(target_rate: uint64, actual_rate: uint64, notional_amount: uint64) -> bytes:
+simulate_settlement:
+    // smart_contracts/fx_hedge/contract.py:88-94
+    // @abimethod()
+    // def simulate_settlement(
+    //     self,
+    //     target_rate: UInt64,  # Rate with 4 decimal places
+    //     actual_rate: UInt64,  # Rate with 4 decimal places
+    //     notional_amount: UInt64
+    // ) -> String:
+    proto 3 1
+    // smart_contracts/fx_hedge/contract.py:96
+    // if actual_rate <= target_rate:
+    frame_dig -2
+    frame_dig -3
+    <=
+    bz simulate_settlement_else_body@2
+    // smart_contracts/fx_hedge/contract.py:97
+    // return String("Contract would fail - rate did not improve sufficiently")
+    pushbytes "Contract would fail - rate did not improve sufficiently"
+    retsub
+
+simulate_settlement_else_body@2:
+    // smart_contracts/fx_hedge/contract.py:104
+    // return String("Contract would succeed - rate improved as expected")
+    pushbytes "Contract would succeed - rate improved as expected"
+    retsub
+
+
+// smart_contracts.fx_hedge.contract.FXHedgeContract.calculate_payout(target_rate: uint64, actual_rate: uint64, notional_amount: uint64) -> uint64:
+calculate_payout:
+    // smart_contracts/fx_hedge/contract.py:106-112
+    // @abimethod()
+    // def calculate_payout(
+    //     self,
+    //     target_rate: UInt64,  # Rate with 4 decimal places (e.g., 1.5% = 150)
+    //     actual_rate: UInt64,  # Rate with 4 decimal places (e.g., 2.0% = 200)
+    //     notional_amount: UInt64  # Amount in base units (e.g., microAlgos)
+    // ) -> UInt64:
+    proto 3 1
+    // smart_contracts/fx_hedge/contract.py:114
+    // if actual_rate <= target_rate:
+    frame_dig -2
+    frame_dig -3
+    <=
+    bz calculate_payout_after_if_else@2
+    // smart_contracts/fx_hedge/contract.py:115
+    // return UInt64(0)
+    intc_1 // 0
+    retsub
+
+calculate_payout_after_if_else@2:
+    // smart_contracts/fx_hedge/contract.py:117-118
+    // # Calculate the benefit from rate improvement
+    // rate_improvement = actual_rate - target_rate
+    frame_dig -2
+    frame_dig -3
+    -
+    // smart_contracts/fx_hedge/contract.py:124-125
+    // # First multiply to get the full precision intermediate result
+    // numerator = notional_amount * rate_improvement
+    frame_dig -1
+    *
+    // smart_contracts/fx_hedge/contract.py:130
+    // denominator = target_rate * RATE_PRECISION
+    frame_dig -3
+    // smart_contracts/fx_hedge/contract.py:127-129
+    // # Then divide by target_rate and scale down by RATE_PRECISION (10000)
+    // # to convert from the double-scaled result back to base units
+    // RATE_PRECISION = UInt64(10000)
+    intc_2 // 10000
+    // smart_contracts/fx_hedge/contract.py:130
+    // denominator = target_rate * RATE_PRECISION
+    *
+    // smart_contracts/fx_hedge/contract.py:131
+    // payout = numerator // denominator
+    /
+    // smart_contracts/fx_hedge/contract.py:132
+    // return payout
+    retsub
+
+
+// smart_contracts.fx_hedge.contract.FXHedgeContract.get_contract_summary(baseline_rate: uint64, target_rate: uint64, notional_amount: uint64, duration_days: uint64) -> bytes:
+get_contract_summary:
+    // smart_contracts/fx_hedge/contract.py:134-141
+    // @abimethod()
+    // def get_contract_summary(
+    //     self,
+    //     baseline_rate: UInt64,  # Rate with 4 decimal places
+    //     target_rate: UInt64,    # Rate with 4 decimal places
+    //     notional_amount: UInt64,
+    //     duration_days: UInt64
+    // ) -> String:
+    proto 4 1
+    // smart_contracts/fx_hedge/contract.py:143
+    // premium = self.calculate_premium(notional_amount, baseline_rate, duration_days)
+    frame_dig -2
+    frame_dig -4
+    frame_dig -1
+    callsub calculate_premium
+    pop
+    // smart_contracts/fx_hedge/contract.py:144
+    // return String("Contract summary calculated successfully")
+    pushbytes "Contract summary calculated successfully"
+    retsub
+
+
+// smart_contracts.fx_hedge.contract.FXHedgeContract.convert_rate_to_decimal(rate_scaled: uint64) -> uint64:
+convert_rate_to_decimal:
+    // smart_contracts/fx_hedge/contract.py:146-147
+    // @abimethod()
+    // def convert_rate_to_decimal(self, rate_scaled: UInt64) -> UInt64:
+    proto 1 1
+    // smart_contracts/fx_hedge/contract.py:149-150
+    // # This would be used by the frontend to display rates properly
+    // return rate_scaled // RATE_PRECISION
+    frame_dig -1
+    intc_2 // 10000
+    /
+    retsub

@@ -49,7 +49,7 @@ const CustomDot = (props: any) => {
   const { cx, cy, payload, contracts } = props;
 
   // Find the color for this point based on contracts
-  const pointColor = payload.color || '#F472B6'; // Default to pink if no color assigned
+  const pointColor = payload.color || '#F472B6'; // Default to green if no color assigned
 
   return (
     <circle
@@ -74,7 +74,7 @@ const RateDashboard: React.FC<RateDashboardProps> = ({ onRateUpdate }) => {
   // Function to get the color for a rate based on the closest contract baseline
   const getColorForRate = (rate: number): string => {
     if (contracts.length === 0) {
-      return '#F472B6'; // Default pink if no contracts
+      return '#0FAE6E'; // Default green if no contracts
     }
 
     // Find the contract with the closest baseline rate
@@ -187,7 +187,7 @@ const RateDashboard: React.FC<RateDashboardProps> = ({ onRateUpdate }) => {
     if (active && payload && payload.length) {
       const pointData = payload[0];
       const rate = pointData.value;
-      const color = pointData.payload.color || '#F472B6';
+      const color = pointData.payload.color || '#0FAE6E';
 
       // Find the closest contract for this rate
       let closestContract = null;
@@ -202,9 +202,9 @@ const RateDashboard: React.FC<RateDashboardProps> = ({ onRateUpdate }) => {
       }
 
       return (
-        <div className="bg-gray-800 p-3 border border-pink-500/30 rounded shadow-lg">
+        <div className="bg-gray-800 p-3 border border-green-500/30 rounded shadow-lg">
           <p className="font-semibold text-white">{`Date: ${label}`}</p>
-          <p className="text-pink-400">{`USD/ZAR: ${formatRate(rate)}`}</p>
+          <p className="text-green-400">{`USD/ZAR: ${formatRate(rate)}`}</p>
           {closestContract && (
             <div className="mt-2 pt-2 border-t border-gray-600">
               <p className="text-xs text-gray-400">Closest Contract:</p>
@@ -239,7 +239,7 @@ const RateDashboard: React.FC<RateDashboardProps> = ({ onRateUpdate }) => {
   if (error) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="text-pink-400 text-lg">Error: {error}</div>
+        <div className="text-green-400 text-lg">Error: {error}</div>
       </div>
     );
   }
@@ -269,7 +269,7 @@ const RateDashboard: React.FC<RateDashboardProps> = ({ onRateUpdate }) => {
         cx={cx}
         cy={cy}
         r={4}
-        fill={payload.color || '#F472B6'}
+        fill={payload.color || '#0FAE6E'}
         stroke="#fff"
         strokeWidth={1}
       />
@@ -278,21 +278,21 @@ const RateDashboard: React.FC<RateDashboardProps> = ({ onRateUpdate }) => {
 
   return (
     <div className="w-full max-w-6xl mx-auto p-6">
-      <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg shadow-lg p-6 border border-pink-500/20">
+      <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg shadow-lg p-6 border border-green-500/20">
         <div className="mb-6">
-          <h2 className="text-2xl font-bold text-pink-400 mb-2">ZAR/USD Exchange Rate Dashboard</h2>
+          <h2 className="text-2xl font-bold text-green-400 mb-2">ZAR/USD Exchange Rate Dashboard</h2>
           <p className="text-gray-300">
             Real-time visualization of exchange rates with contract-based coloring.
           </p>
           <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-gradient-to-br from-gray-700 to-gray-800 p-3 rounded border border-pink-500/20">
+            <div className="bg-gradient-to-br from-gray-700 to-gray-800 p-3 rounded border border-green-500/20">
               <div className="text-xs text-gray-400">Current Rate</div>
               <div className="flex items-center gap-2">
                 <div
                   className="w-3 h-3 rounded-full"
                   style={{ backgroundColor: currentColor }}
                 />
-                <div className="text-lg font-semibold text-pink-400">{formatRate(currentRate)}</div>
+                <div className="text-lg font-semibold text-green-400">{formatRate(currentRate)}</div>
               </div>
             </div>
           </div>
@@ -342,8 +342,8 @@ const RateDashboard: React.FC<RateDashboardProps> = ({ onRateUpdate }) => {
 
         {/* Contract Legend */}
         {contractLegend.length > 0 && (
-          <div className="mt-6 p-4 bg-gray-700 rounded-lg border border-pink-500/20">
-            <h3 className="text-lg font-semibold text-pink-400 mb-3">Active Contract Baseline Rates</h3>
+          <div className="mt-6 p-4 bg-gray-700 rounded-lg border border-green-500/20">
+            <h3 className="text-lg font-semibold text-green-400 mb-3">Active Contract Baseline Rates</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
               {contractLegend.map((item, index) => (
                 <div key={index} className="flex items-center gap-3 p-2 bg-gray-600 rounded">
@@ -378,7 +378,7 @@ const RateDashboard: React.FC<RateDashboardProps> = ({ onRateUpdate }) => {
 
         <div className="mt-6 text-center">
           <div className="inline-flex items-center gap-2 text-sm text-gray-300">
-            <div className="w-3 h-3 bg-pink-500 rounded-full animate-pulse"></div>
+            <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
             <span>Live updates every 10 seconds</span>
           </div>
         </div>

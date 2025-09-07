@@ -1,0 +1,2665 @@
+{
+  "version": 3,
+  "sources": [
+    "../../fx_hedge/contract.py"
+  ],
+  "mappings": ";;;;;;;;;;;;;;AAMA;;AAAA;;;AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;;;AAAA;;;;;;;;;;;;;;AAAA;;AA2IK;;AAAA;AAAA;AAAA;;AAAA;AA3IL;;;AAAA;AA2IK;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAZA;;AAAA;AAAA;AAAA;;AAAA;AA/HL;;;AAAA;AAAA;;;AAAA;AAAA;;;AAAA;AAAA;;;AAAA;AA+HK;;;AAAA;AAAA;AAAA;AAAA;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AA5BA;;AAAA;AAAA;AAAA;;AAAA;AAnGL;;;AAAA;AAAA;;;AAAA;AAAA;;;AAAA;AAmGK;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAlBA;;AAAA;AAAA;AAAA;;AAAA;AAjFL;;;AAAA;AAAA;;;AAAA;AAAA;;;AAAA;AAiFK;;;AAAA;AAAA;AAAA;AAAA;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAvDA;;AAAA;AAAA;AAAA;;AAAA;AA1BL;;;AAAA;AAAA;;;AAAA;AAAA;;;AAAA;AA0BK;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAxBA;;AAAA;AAAA;AAAA;;AAAA;AAFL;;;AAAA;AAAA;;;AAAA;AAAA;;;AAAA;AAAA;;;AAAA;AAEK;;;AAAA;AAAA;AAAA;AAAA;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAFL;;AAAA;;;;;;;;;AAEA;;;AAUQ;;AAAA;AACA;;AAAA;AACA;;AAAA;AACA;;AAAA;AAGA;;AAAA;;AAAA;;AAAU;;;AAAV;AAMO;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAP;AAER;;;;;;;AAoBiB;;AAAgB;AAAhB;AAHO;;;AAGP;AAAT;AAeR;;;AACmB;AAVC;;AAfA;;;AAeA;AAbA;;;AAaA;AAAA;AAAZ;;AAAY;AACE;;;;;;AAEJ;AACV;;AAAA;AASO;AAAP;;;;;;AAGM;;AAAA;;AAAA;AAAd;;;AACmB;;AAAA;;AAAA;AAAiB;;AAAlB;AAAN;AAAA;;AACA;AAAS;AAAT;AAAA;;AAEG;;AAAA;AAAf;;;;;AAzBiB;;;AA2BA;;AAAA;;AAAA;AAAjB;;;AACgB;;AAAa;AAAN;AAAP;;;;;AAEA;;AAAc;AAAN;AAAR;;;;;;;AA9BC;;;AAkCjB;;;AAQW;;AAAA;;AAAA;AAAX;;;AACmB;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAP;AAOO;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAP;AAEZ;;;AAQW;;AAAA;;AAAA;AAAX;;;AACmB;AAAP;AAGJ;;AAAA;;AAAmB;AAOnB;;AAAY;AAKZ;;AADiB;AACH;AACL;AACT;AAER;;;AASQ;;AAAA;;AAAA;;AAAU;;;AAAV;AACO;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAP;AAER;;;AAIe;;AAAe;AAAf;AAAP",
+  "op_pc_offset": 0,
+  "pc_events": {
+    "1": {
+      "subroutine": "algopy.arc4.ARC4Contract.approval_program",
+      "params": {},
+      "block": "main",
+      "stack_in": [],
+      "op": "intcblock 1 0 10000"
+    },
+    "7": {
+      "op": "bytecblock 0x151f7c75"
+    },
+    "14": {
+      "op": "txn NumAppArgs",
+      "defined_out": [
+        "tmp%0#1"
+      ],
+      "stack_out": [
+        "tmp%0#1"
+      ]
+    },
+    "16": {
+      "op": "bz main_bare_routing@11",
+      "stack_out": []
+    },
+    "19": {
+      "op": "pushbytess 0xd6485718 0x723713d3 0x49fe2c46 0x08c77219 0x7a4e70a3 0x6984ee1f // method \"create_contract(uint64,uint64,uint64,uint64)string\", method \"calculate_premium(uint64,uint64,uint64)uint64\", method \"simulate_settlement(uint64,uint64,uint64)string\", method \"calculate_payout(uint64,uint64,uint64)uint64\", method \"get_contract_summary(uint64,uint64,uint64,uint64)string\", method \"convert_rate_to_decimal(uint64)uint64\"",
+      "defined_out": [
+        "Method(calculate_payout(uint64,uint64,uint64)uint64)",
+        "Method(calculate_premium(uint64,uint64,uint64)uint64)",
+        "Method(convert_rate_to_decimal(uint64)uint64)",
+        "Method(create_contract(uint64,uint64,uint64,uint64)string)",
+        "Method(get_contract_summary(uint64,uint64,uint64,uint64)string)",
+        "Method(simulate_settlement(uint64,uint64,uint64)string)"
+      ],
+      "stack_out": [
+        "Method(create_contract(uint64,uint64,uint64,uint64)string)",
+        "Method(calculate_premium(uint64,uint64,uint64)uint64)",
+        "Method(simulate_settlement(uint64,uint64,uint64)string)",
+        "Method(calculate_payout(uint64,uint64,uint64)uint64)",
+        "Method(get_contract_summary(uint64,uint64,uint64,uint64)string)",
+        "Method(convert_rate_to_decimal(uint64)uint64)"
+      ]
+    },
+    "51": {
+      "op": "txna ApplicationArgs 0",
+      "defined_out": [
+        "Method(calculate_payout(uint64,uint64,uint64)uint64)",
+        "Method(calculate_premium(uint64,uint64,uint64)uint64)",
+        "Method(convert_rate_to_decimal(uint64)uint64)",
+        "Method(create_contract(uint64,uint64,uint64,uint64)string)",
+        "Method(get_contract_summary(uint64,uint64,uint64,uint64)string)",
+        "Method(simulate_settlement(uint64,uint64,uint64)string)",
+        "tmp%2#0"
+      ],
+      "stack_out": [
+        "Method(create_contract(uint64,uint64,uint64,uint64)string)",
+        "Method(calculate_premium(uint64,uint64,uint64)uint64)",
+        "Method(simulate_settlement(uint64,uint64,uint64)string)",
+        "Method(calculate_payout(uint64,uint64,uint64)uint64)",
+        "Method(get_contract_summary(uint64,uint64,uint64,uint64)string)",
+        "Method(convert_rate_to_decimal(uint64)uint64)",
+        "tmp%2#0"
+      ]
+    },
+    "54": {
+      "op": "match main_create_contract_route@3 main_calculate_premium_route@4 main_simulate_settlement_route@5 main_calculate_payout_route@6 main_get_contract_summary_route@7 main_convert_rate_to_decimal_route@8",
+      "stack_out": []
+    },
+    "68": {
+      "block": "main_after_if_else@15",
+      "stack_in": [],
+      "op": "intc_1 // 0",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "69": {
+      "op": "return",
+      "stack_out": []
+    },
+    "70": {
+      "block": "main_convert_rate_to_decimal_route@8",
+      "stack_in": [],
+      "op": "txn OnCompletion",
+      "defined_out": [
+        "tmp%45#0"
+      ],
+      "stack_out": [
+        "tmp%45#0"
+      ]
+    },
+    "72": {
+      "op": "!",
+      "defined_out": [
+        "tmp%46#0"
+      ],
+      "stack_out": [
+        "tmp%46#0"
+      ]
+    },
+    "73": {
+      "error": "OnCompletion is not NoOp",
+      "op": "assert // OnCompletion is not NoOp",
+      "stack_out": []
+    },
+    "74": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%47#0"
+      ],
+      "stack_out": [
+        "tmp%47#0"
+      ]
+    },
+    "76": {
+      "error": "can only call when not creating",
+      "op": "assert // can only call when not creating",
+      "stack_out": []
+    },
+    "77": {
+      "op": "txna ApplicationArgs 1",
+      "defined_out": [
+        "reinterpret_bytes[8]%17#0"
+      ],
+      "stack_out": [
+        "reinterpret_bytes[8]%17#0"
+      ]
+    },
+    "80": {
+      "op": "btoi",
+      "defined_out": [
+        "tmp%49#0"
+      ],
+      "stack_out": [
+        "tmp%49#0"
+      ]
+    },
+    "81": {
+      "callsub": "smart_contracts.fx_hedge.contract.FXHedgeContract.convert_rate_to_decimal",
+      "op": "callsub convert_rate_to_decimal",
+      "defined_out": [
+        "to_encode%5#0"
+      ],
+      "stack_out": [
+        "to_encode%5#0"
+      ]
+    },
+    "84": {
+      "op": "itob",
+      "defined_out": [
+        "val_as_bytes%2#0"
+      ],
+      "stack_out": [
+        "val_as_bytes%2#0"
+      ]
+    },
+    "85": {
+      "op": "bytec_0 // 0x151f7c75",
+      "defined_out": [
+        "0x151f7c75",
+        "val_as_bytes%2#0"
+      ],
+      "stack_out": [
+        "val_as_bytes%2#0",
+        "0x151f7c75"
+      ]
+    },
+    "86": {
+      "op": "swap",
+      "stack_out": [
+        "0x151f7c75",
+        "val_as_bytes%2#0"
+      ]
+    },
+    "87": {
+      "op": "concat",
+      "defined_out": [
+        "tmp%50#0"
+      ],
+      "stack_out": [
+        "tmp%50#0"
+      ]
+    },
+    "88": {
+      "op": "log",
+      "stack_out": []
+    },
+    "89": {
+      "op": "intc_0 // 1",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "90": {
+      "op": "return",
+      "stack_out": []
+    },
+    "91": {
+      "block": "main_get_contract_summary_route@7",
+      "stack_in": [],
+      "op": "txn OnCompletion",
+      "defined_out": [
+        "tmp%36#0"
+      ],
+      "stack_out": [
+        "tmp%36#0"
+      ]
+    },
+    "93": {
+      "op": "!",
+      "defined_out": [
+        "tmp%37#0"
+      ],
+      "stack_out": [
+        "tmp%37#0"
+      ]
+    },
+    "94": {
+      "error": "OnCompletion is not NoOp",
+      "op": "assert // OnCompletion is not NoOp",
+      "stack_out": []
+    },
+    "95": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%38#0"
+      ],
+      "stack_out": [
+        "tmp%38#0"
+      ]
+    },
+    "97": {
+      "error": "can only call when not creating",
+      "op": "assert // can only call when not creating",
+      "stack_out": []
+    },
+    "98": {
+      "op": "txna ApplicationArgs 1",
+      "defined_out": [
+        "reinterpret_bytes[8]%13#0"
+      ],
+      "stack_out": [
+        "reinterpret_bytes[8]%13#0"
+      ]
+    },
+    "101": {
+      "op": "btoi",
+      "defined_out": [
+        "tmp%40#0"
+      ],
+      "stack_out": [
+        "tmp%40#0"
+      ]
+    },
+    "102": {
+      "op": "txna ApplicationArgs 2",
+      "defined_out": [
+        "reinterpret_bytes[8]%14#0",
+        "tmp%40#0"
+      ],
+      "stack_out": [
+        "tmp%40#0",
+        "reinterpret_bytes[8]%14#0"
+      ]
+    },
+    "105": {
+      "op": "btoi",
+      "defined_out": [
+        "tmp%40#0",
+        "tmp%41#0"
+      ],
+      "stack_out": [
+        "tmp%40#0",
+        "tmp%41#0"
+      ]
+    },
+    "106": {
+      "op": "txna ApplicationArgs 3",
+      "defined_out": [
+        "reinterpret_bytes[8]%15#0",
+        "tmp%40#0",
+        "tmp%41#0"
+      ],
+      "stack_out": [
+        "tmp%40#0",
+        "tmp%41#0",
+        "reinterpret_bytes[8]%15#0"
+      ]
+    },
+    "109": {
+      "op": "btoi",
+      "defined_out": [
+        "tmp%40#0",
+        "tmp%41#0",
+        "tmp%42#0"
+      ],
+      "stack_out": [
+        "tmp%40#0",
+        "tmp%41#0",
+        "tmp%42#0"
+      ]
+    },
+    "110": {
+      "op": "txna ApplicationArgs 4",
+      "defined_out": [
+        "reinterpret_bytes[8]%16#0",
+        "tmp%40#0",
+        "tmp%41#0",
+        "tmp%42#0"
+      ],
+      "stack_out": [
+        "tmp%40#0",
+        "tmp%41#0",
+        "tmp%42#0",
+        "reinterpret_bytes[8]%16#0"
+      ]
+    },
+    "113": {
+      "op": "btoi",
+      "defined_out": [
+        "tmp%40#0",
+        "tmp%41#0",
+        "tmp%42#0",
+        "tmp%43#0"
+      ],
+      "stack_out": [
+        "tmp%40#0",
+        "tmp%41#0",
+        "tmp%42#0",
+        "tmp%43#0"
+      ]
+    },
+    "114": {
+      "callsub": "smart_contracts.fx_hedge.contract.FXHedgeContract.get_contract_summary",
+      "op": "callsub get_contract_summary",
+      "defined_out": [
+        "to_encode%4#0"
+      ],
+      "stack_out": [
+        "to_encode%4#0"
+      ]
+    },
+    "117": {
+      "op": "dup",
+      "defined_out": [
+        "to_encode%4#0",
+        "to_encode%4#0 (copy)"
+      ],
+      "stack_out": [
+        "to_encode%4#0",
+        "to_encode%4#0 (copy)"
+      ]
+    },
+    "118": {
+      "op": "len",
+      "defined_out": [
+        "length%2#0",
+        "to_encode%4#0"
+      ],
+      "stack_out": [
+        "to_encode%4#0",
+        "length%2#0"
+      ]
+    },
+    "119": {
+      "op": "itob",
+      "defined_out": [
+        "as_bytes%2#0",
+        "to_encode%4#0"
+      ],
+      "stack_out": [
+        "to_encode%4#0",
+        "as_bytes%2#0"
+      ]
+    },
+    "120": {
+      "op": "extract 6 2",
+      "defined_out": [
+        "length_uint16%2#0",
+        "to_encode%4#0"
+      ],
+      "stack_out": [
+        "to_encode%4#0",
+        "length_uint16%2#0"
+      ]
+    },
+    "123": {
+      "op": "swap",
+      "stack_out": [
+        "length_uint16%2#0",
+        "to_encode%4#0"
+      ]
+    },
+    "124": {
+      "op": "concat",
+      "defined_out": [
+        "encoded_value%2#0"
+      ],
+      "stack_out": [
+        "encoded_value%2#0"
+      ]
+    },
+    "125": {
+      "op": "bytec_0 // 0x151f7c75",
+      "defined_out": [
+        "0x151f7c75",
+        "encoded_value%2#0"
+      ],
+      "stack_out": [
+        "encoded_value%2#0",
+        "0x151f7c75"
+      ]
+    },
+    "126": {
+      "op": "swap",
+      "stack_out": [
+        "0x151f7c75",
+        "encoded_value%2#0"
+      ]
+    },
+    "127": {
+      "op": "concat",
+      "defined_out": [
+        "tmp%44#0"
+      ],
+      "stack_out": [
+        "tmp%44#0"
+      ]
+    },
+    "128": {
+      "op": "log",
+      "stack_out": []
+    },
+    "129": {
+      "op": "intc_0 // 1",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "130": {
+      "op": "return",
+      "stack_out": []
+    },
+    "131": {
+      "block": "main_calculate_payout_route@6",
+      "stack_in": [],
+      "op": "txn OnCompletion",
+      "defined_out": [
+        "tmp%28#0"
+      ],
+      "stack_out": [
+        "tmp%28#0"
+      ]
+    },
+    "133": {
+      "op": "!",
+      "defined_out": [
+        "tmp%29#0"
+      ],
+      "stack_out": [
+        "tmp%29#0"
+      ]
+    },
+    "134": {
+      "error": "OnCompletion is not NoOp",
+      "op": "assert // OnCompletion is not NoOp",
+      "stack_out": []
+    },
+    "135": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%30#0"
+      ],
+      "stack_out": [
+        "tmp%30#0"
+      ]
+    },
+    "137": {
+      "error": "can only call when not creating",
+      "op": "assert // can only call when not creating",
+      "stack_out": []
+    },
+    "138": {
+      "op": "txna ApplicationArgs 1",
+      "defined_out": [
+        "reinterpret_bytes[8]%10#0"
+      ],
+      "stack_out": [
+        "reinterpret_bytes[8]%10#0"
+      ]
+    },
+    "141": {
+      "op": "btoi",
+      "defined_out": [
+        "tmp%32#0"
+      ],
+      "stack_out": [
+        "tmp%32#0"
+      ]
+    },
+    "142": {
+      "op": "txna ApplicationArgs 2",
+      "defined_out": [
+        "reinterpret_bytes[8]%11#0",
+        "tmp%32#0"
+      ],
+      "stack_out": [
+        "tmp%32#0",
+        "reinterpret_bytes[8]%11#0"
+      ]
+    },
+    "145": {
+      "op": "btoi",
+      "defined_out": [
+        "tmp%32#0",
+        "tmp%33#0"
+      ],
+      "stack_out": [
+        "tmp%32#0",
+        "tmp%33#0"
+      ]
+    },
+    "146": {
+      "op": "txna ApplicationArgs 3",
+      "defined_out": [
+        "reinterpret_bytes[8]%12#0",
+        "tmp%32#0",
+        "tmp%33#0"
+      ],
+      "stack_out": [
+        "tmp%32#0",
+        "tmp%33#0",
+        "reinterpret_bytes[8]%12#0"
+      ]
+    },
+    "149": {
+      "op": "btoi",
+      "defined_out": [
+        "tmp%32#0",
+        "tmp%33#0",
+        "tmp%34#0"
+      ],
+      "stack_out": [
+        "tmp%32#0",
+        "tmp%33#0",
+        "tmp%34#0"
+      ]
+    },
+    "150": {
+      "callsub": "smart_contracts.fx_hedge.contract.FXHedgeContract.calculate_payout",
+      "op": "callsub calculate_payout",
+      "defined_out": [
+        "to_encode%3#0"
+      ],
+      "stack_out": [
+        "to_encode%3#0"
+      ]
+    },
+    "153": {
+      "op": "itob",
+      "defined_out": [
+        "val_as_bytes%1#0"
+      ],
+      "stack_out": [
+        "val_as_bytes%1#0"
+      ]
+    },
+    "154": {
+      "op": "bytec_0 // 0x151f7c75",
+      "defined_out": [
+        "0x151f7c75",
+        "val_as_bytes%1#0"
+      ],
+      "stack_out": [
+        "val_as_bytes%1#0",
+        "0x151f7c75"
+      ]
+    },
+    "155": {
+      "op": "swap",
+      "stack_out": [
+        "0x151f7c75",
+        "val_as_bytes%1#0"
+      ]
+    },
+    "156": {
+      "op": "concat",
+      "defined_out": [
+        "tmp%35#0"
+      ],
+      "stack_out": [
+        "tmp%35#0"
+      ]
+    },
+    "157": {
+      "op": "log",
+      "stack_out": []
+    },
+    "158": {
+      "op": "intc_0 // 1",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "159": {
+      "op": "return",
+      "stack_out": []
+    },
+    "160": {
+      "block": "main_simulate_settlement_route@5",
+      "stack_in": [],
+      "op": "txn OnCompletion",
+      "defined_out": [
+        "tmp%20#0"
+      ],
+      "stack_out": [
+        "tmp%20#0"
+      ]
+    },
+    "162": {
+      "op": "!",
+      "defined_out": [
+        "tmp%21#0"
+      ],
+      "stack_out": [
+        "tmp%21#0"
+      ]
+    },
+    "163": {
+      "error": "OnCompletion is not NoOp",
+      "op": "assert // OnCompletion is not NoOp",
+      "stack_out": []
+    },
+    "164": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%22#0"
+      ],
+      "stack_out": [
+        "tmp%22#0"
+      ]
+    },
+    "166": {
+      "error": "can only call when not creating",
+      "op": "assert // can only call when not creating",
+      "stack_out": []
+    },
+    "167": {
+      "op": "txna ApplicationArgs 1",
+      "defined_out": [
+        "reinterpret_bytes[8]%7#0"
+      ],
+      "stack_out": [
+        "reinterpret_bytes[8]%7#0"
+      ]
+    },
+    "170": {
+      "op": "btoi",
+      "defined_out": [
+        "tmp%24#0"
+      ],
+      "stack_out": [
+        "tmp%24#0"
+      ]
+    },
+    "171": {
+      "op": "txna ApplicationArgs 2",
+      "defined_out": [
+        "reinterpret_bytes[8]%8#0",
+        "tmp%24#0"
+      ],
+      "stack_out": [
+        "tmp%24#0",
+        "reinterpret_bytes[8]%8#0"
+      ]
+    },
+    "174": {
+      "op": "btoi",
+      "defined_out": [
+        "tmp%24#0",
+        "tmp%25#0"
+      ],
+      "stack_out": [
+        "tmp%24#0",
+        "tmp%25#0"
+      ]
+    },
+    "175": {
+      "op": "txna ApplicationArgs 3",
+      "defined_out": [
+        "reinterpret_bytes[8]%9#0",
+        "tmp%24#0",
+        "tmp%25#0"
+      ],
+      "stack_out": [
+        "tmp%24#0",
+        "tmp%25#0",
+        "reinterpret_bytes[8]%9#0"
+      ]
+    },
+    "178": {
+      "op": "btoi",
+      "defined_out": [
+        "tmp%24#0",
+        "tmp%25#0",
+        "tmp%26#0"
+      ],
+      "stack_out": [
+        "tmp%24#0",
+        "tmp%25#0",
+        "tmp%26#0"
+      ]
+    },
+    "179": {
+      "callsub": "smart_contracts.fx_hedge.contract.FXHedgeContract.simulate_settlement",
+      "op": "callsub simulate_settlement",
+      "defined_out": [
+        "to_encode%2#0"
+      ],
+      "stack_out": [
+        "to_encode%2#0"
+      ]
+    },
+    "182": {
+      "op": "dup",
+      "defined_out": [
+        "to_encode%2#0",
+        "to_encode%2#0 (copy)"
+      ],
+      "stack_out": [
+        "to_encode%2#0",
+        "to_encode%2#0 (copy)"
+      ]
+    },
+    "183": {
+      "op": "len",
+      "defined_out": [
+        "length%1#0",
+        "to_encode%2#0"
+      ],
+      "stack_out": [
+        "to_encode%2#0",
+        "length%1#0"
+      ]
+    },
+    "184": {
+      "op": "itob",
+      "defined_out": [
+        "as_bytes%1#0",
+        "to_encode%2#0"
+      ],
+      "stack_out": [
+        "to_encode%2#0",
+        "as_bytes%1#0"
+      ]
+    },
+    "185": {
+      "op": "extract 6 2",
+      "defined_out": [
+        "length_uint16%1#0",
+        "to_encode%2#0"
+      ],
+      "stack_out": [
+        "to_encode%2#0",
+        "length_uint16%1#0"
+      ]
+    },
+    "188": {
+      "op": "swap",
+      "stack_out": [
+        "length_uint16%1#0",
+        "to_encode%2#0"
+      ]
+    },
+    "189": {
+      "op": "concat",
+      "defined_out": [
+        "encoded_value%1#0"
+      ],
+      "stack_out": [
+        "encoded_value%1#0"
+      ]
+    },
+    "190": {
+      "op": "bytec_0 // 0x151f7c75",
+      "defined_out": [
+        "0x151f7c75",
+        "encoded_value%1#0"
+      ],
+      "stack_out": [
+        "encoded_value%1#0",
+        "0x151f7c75"
+      ]
+    },
+    "191": {
+      "op": "swap",
+      "stack_out": [
+        "0x151f7c75",
+        "encoded_value%1#0"
+      ]
+    },
+    "192": {
+      "op": "concat",
+      "defined_out": [
+        "tmp%27#0"
+      ],
+      "stack_out": [
+        "tmp%27#0"
+      ]
+    },
+    "193": {
+      "op": "log",
+      "stack_out": []
+    },
+    "194": {
+      "op": "intc_0 // 1",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "195": {
+      "op": "return",
+      "stack_out": []
+    },
+    "196": {
+      "block": "main_calculate_premium_route@4",
+      "stack_in": [],
+      "op": "txn OnCompletion",
+      "defined_out": [
+        "tmp%12#0"
+      ],
+      "stack_out": [
+        "tmp%12#0"
+      ]
+    },
+    "198": {
+      "op": "!",
+      "defined_out": [
+        "tmp%13#0"
+      ],
+      "stack_out": [
+        "tmp%13#0"
+      ]
+    },
+    "199": {
+      "error": "OnCompletion is not NoOp",
+      "op": "assert // OnCompletion is not NoOp",
+      "stack_out": []
+    },
+    "200": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%14#0"
+      ],
+      "stack_out": [
+        "tmp%14#0"
+      ]
+    },
+    "202": {
+      "error": "can only call when not creating",
+      "op": "assert // can only call when not creating",
+      "stack_out": []
+    },
+    "203": {
+      "op": "txna ApplicationArgs 1",
+      "defined_out": [
+        "reinterpret_bytes[8]%4#0"
+      ],
+      "stack_out": [
+        "reinterpret_bytes[8]%4#0"
+      ]
+    },
+    "206": {
+      "op": "btoi",
+      "defined_out": [
+        "tmp%16#0"
+      ],
+      "stack_out": [
+        "tmp%16#0"
+      ]
+    },
+    "207": {
+      "op": "txna ApplicationArgs 2",
+      "defined_out": [
+        "reinterpret_bytes[8]%5#0",
+        "tmp%16#0"
+      ],
+      "stack_out": [
+        "tmp%16#0",
+        "reinterpret_bytes[8]%5#0"
+      ]
+    },
+    "210": {
+      "op": "btoi",
+      "defined_out": [
+        "tmp%16#0",
+        "tmp%17#0"
+      ],
+      "stack_out": [
+        "tmp%16#0",
+        "tmp%17#0"
+      ]
+    },
+    "211": {
+      "op": "txna ApplicationArgs 3",
+      "defined_out": [
+        "reinterpret_bytes[8]%6#0",
+        "tmp%16#0",
+        "tmp%17#0"
+      ],
+      "stack_out": [
+        "tmp%16#0",
+        "tmp%17#0",
+        "reinterpret_bytes[8]%6#0"
+      ]
+    },
+    "214": {
+      "op": "btoi",
+      "defined_out": [
+        "tmp%16#0",
+        "tmp%17#0",
+        "tmp%18#0"
+      ],
+      "stack_out": [
+        "tmp%16#0",
+        "tmp%17#0",
+        "tmp%18#0"
+      ]
+    },
+    "215": {
+      "callsub": "smart_contracts.fx_hedge.contract.FXHedgeContract.calculate_premium",
+      "op": "callsub calculate_premium",
+      "defined_out": [
+        "to_encode%1#0"
+      ],
+      "stack_out": [
+        "to_encode%1#0"
+      ]
+    },
+    "218": {
+      "op": "itob",
+      "defined_out": [
+        "val_as_bytes%0#0"
+      ],
+      "stack_out": [
+        "val_as_bytes%0#0"
+      ]
+    },
+    "219": {
+      "op": "bytec_0 // 0x151f7c75",
+      "defined_out": [
+        "0x151f7c75",
+        "val_as_bytes%0#0"
+      ],
+      "stack_out": [
+        "val_as_bytes%0#0",
+        "0x151f7c75"
+      ]
+    },
+    "220": {
+      "op": "swap",
+      "stack_out": [
+        "0x151f7c75",
+        "val_as_bytes%0#0"
+      ]
+    },
+    "221": {
+      "op": "concat",
+      "defined_out": [
+        "tmp%19#0"
+      ],
+      "stack_out": [
+        "tmp%19#0"
+      ]
+    },
+    "222": {
+      "op": "log",
+      "stack_out": []
+    },
+    "223": {
+      "op": "intc_0 // 1",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "224": {
+      "op": "return",
+      "stack_out": []
+    },
+    "225": {
+      "block": "main_create_contract_route@3",
+      "stack_in": [],
+      "op": "txn OnCompletion",
+      "defined_out": [
+        "tmp%3#0"
+      ],
+      "stack_out": [
+        "tmp%3#0"
+      ]
+    },
+    "227": {
+      "op": "!",
+      "defined_out": [
+        "tmp%4#0"
+      ],
+      "stack_out": [
+        "tmp%4#0"
+      ]
+    },
+    "228": {
+      "error": "OnCompletion is not NoOp",
+      "op": "assert // OnCompletion is not NoOp",
+      "stack_out": []
+    },
+    "229": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%5#0"
+      ],
+      "stack_out": [
+        "tmp%5#0"
+      ]
+    },
+    "231": {
+      "error": "can only call when not creating",
+      "op": "assert // can only call when not creating",
+      "stack_out": []
+    },
+    "232": {
+      "op": "txna ApplicationArgs 1",
+      "defined_out": [
+        "reinterpret_bytes[8]%0#0"
+      ],
+      "stack_out": [
+        "reinterpret_bytes[8]%0#0"
+      ]
+    },
+    "235": {
+      "op": "btoi",
+      "defined_out": [
+        "tmp%7#0"
+      ],
+      "stack_out": [
+        "tmp%7#0"
+      ]
+    },
+    "236": {
+      "op": "txna ApplicationArgs 2",
+      "defined_out": [
+        "reinterpret_bytes[8]%1#0",
+        "tmp%7#0"
+      ],
+      "stack_out": [
+        "tmp%7#0",
+        "reinterpret_bytes[8]%1#0"
+      ]
+    },
+    "239": {
+      "op": "btoi",
+      "defined_out": [
+        "tmp%7#0",
+        "tmp%8#0"
+      ],
+      "stack_out": [
+        "tmp%7#0",
+        "tmp%8#0"
+      ]
+    },
+    "240": {
+      "op": "txna ApplicationArgs 3",
+      "defined_out": [
+        "reinterpret_bytes[8]%2#0",
+        "tmp%7#0",
+        "tmp%8#0"
+      ],
+      "stack_out": [
+        "tmp%7#0",
+        "tmp%8#0",
+        "reinterpret_bytes[8]%2#0"
+      ]
+    },
+    "243": {
+      "op": "btoi",
+      "defined_out": [
+        "tmp%7#0",
+        "tmp%8#0",
+        "tmp%9#0"
+      ],
+      "stack_out": [
+        "tmp%7#0",
+        "tmp%8#0",
+        "tmp%9#0"
+      ]
+    },
+    "244": {
+      "op": "txna ApplicationArgs 4",
+      "defined_out": [
+        "reinterpret_bytes[8]%3#0",
+        "tmp%7#0",
+        "tmp%8#0",
+        "tmp%9#0"
+      ],
+      "stack_out": [
+        "tmp%7#0",
+        "tmp%8#0",
+        "tmp%9#0",
+        "reinterpret_bytes[8]%3#0"
+      ]
+    },
+    "247": {
+      "op": "btoi",
+      "defined_out": [
+        "tmp%10#0",
+        "tmp%7#0",
+        "tmp%8#0",
+        "tmp%9#0"
+      ],
+      "stack_out": [
+        "tmp%7#0",
+        "tmp%8#0",
+        "tmp%9#0",
+        "tmp%10#0"
+      ]
+    },
+    "248": {
+      "callsub": "smart_contracts.fx_hedge.contract.FXHedgeContract.create_contract",
+      "op": "callsub create_contract",
+      "defined_out": [
+        "to_encode%0#0"
+      ],
+      "stack_out": [
+        "to_encode%0#0"
+      ]
+    },
+    "251": {
+      "op": "dup",
+      "defined_out": [
+        "to_encode%0#0",
+        "to_encode%0#0 (copy)"
+      ],
+      "stack_out": [
+        "to_encode%0#0",
+        "to_encode%0#0 (copy)"
+      ]
+    },
+    "252": {
+      "op": "len",
+      "defined_out": [
+        "length%0#0",
+        "to_encode%0#0"
+      ],
+      "stack_out": [
+        "to_encode%0#0",
+        "length%0#0"
+      ]
+    },
+    "253": {
+      "op": "itob",
+      "defined_out": [
+        "as_bytes%0#0",
+        "to_encode%0#0"
+      ],
+      "stack_out": [
+        "to_encode%0#0",
+        "as_bytes%0#0"
+      ]
+    },
+    "254": {
+      "op": "extract 6 2",
+      "defined_out": [
+        "length_uint16%0#0",
+        "to_encode%0#0"
+      ],
+      "stack_out": [
+        "to_encode%0#0",
+        "length_uint16%0#0"
+      ]
+    },
+    "257": {
+      "op": "swap",
+      "stack_out": [
+        "length_uint16%0#0",
+        "to_encode%0#0"
+      ]
+    },
+    "258": {
+      "op": "concat",
+      "defined_out": [
+        "encoded_value%0#0"
+      ],
+      "stack_out": [
+        "encoded_value%0#0"
+      ]
+    },
+    "259": {
+      "op": "bytec_0 // 0x151f7c75",
+      "defined_out": [
+        "0x151f7c75",
+        "encoded_value%0#0"
+      ],
+      "stack_out": [
+        "encoded_value%0#0",
+        "0x151f7c75"
+      ]
+    },
+    "260": {
+      "op": "swap",
+      "stack_out": [
+        "0x151f7c75",
+        "encoded_value%0#0"
+      ]
+    },
+    "261": {
+      "op": "concat",
+      "defined_out": [
+        "tmp%11#0"
+      ],
+      "stack_out": [
+        "tmp%11#0"
+      ]
+    },
+    "262": {
+      "op": "log",
+      "stack_out": []
+    },
+    "263": {
+      "op": "intc_0 // 1",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "264": {
+      "op": "return",
+      "stack_out": []
+    },
+    "265": {
+      "block": "main_bare_routing@11",
+      "stack_in": [],
+      "op": "txn OnCompletion",
+      "defined_out": [
+        "tmp%51#0"
+      ],
+      "stack_out": [
+        "tmp%51#0"
+      ]
+    },
+    "267": {
+      "op": "bnz main_after_if_else@15",
+      "stack_out": []
+    },
+    "270": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%52#0"
+      ],
+      "stack_out": [
+        "tmp%52#0"
+      ]
+    },
+    "272": {
+      "op": "!",
+      "defined_out": [
+        "tmp%53#0"
+      ],
+      "stack_out": [
+        "tmp%53#0"
+      ]
+    },
+    "273": {
+      "error": "can only call when creating",
+      "op": "assert // can only call when creating",
+      "stack_out": []
+    },
+    "274": {
+      "op": "intc_0 // 1",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "275": {
+      "op": "return",
+      "stack_out": []
+    },
+    "276": {
+      "subroutine": "smart_contracts.fx_hedge.contract.FXHedgeContract.create_contract",
+      "params": {
+        "baseline_rate#0": "uint64",
+        "target_rate#0": "uint64",
+        "notional_amount#0": "uint64",
+        "duration_days#0": "uint64"
+      },
+      "block": "create_contract",
+      "stack_in": [],
+      "op": "proto 4 1"
+    },
+    "279": {
+      "op": "frame_dig -4",
+      "defined_out": [
+        "baseline_rate#0 (copy)"
+      ],
+      "stack_out": [
+        "baseline_rate#0 (copy)"
+      ]
+    },
+    "281": {
+      "error": "Baseline rate must be positive",
+      "op": "assert // Baseline rate must be positive",
+      "stack_out": []
+    },
+    "282": {
+      "op": "frame_dig -3",
+      "defined_out": [
+        "target_rate#0 (copy)"
+      ],
+      "stack_out": [
+        "target_rate#0 (copy)"
+      ]
+    },
+    "284": {
+      "error": "Target rate must be positive",
+      "op": "assert // Target rate must be positive",
+      "stack_out": []
+    },
+    "285": {
+      "op": "frame_dig -2",
+      "defined_out": [
+        "notional_amount#0 (copy)"
+      ],
+      "stack_out": [
+        "notional_amount#0 (copy)"
+      ]
+    },
+    "287": {
+      "error": "Notional amount must be positive",
+      "op": "assert // Notional amount must be positive",
+      "stack_out": []
+    },
+    "288": {
+      "op": "frame_dig -1",
+      "defined_out": [
+        "duration_days#0 (copy)"
+      ],
+      "stack_out": [
+        "duration_days#0 (copy)"
+      ]
+    },
+    "290": {
+      "error": "Duration must be positive",
+      "op": "assert // Duration must be positive",
+      "stack_out": []
+    },
+    "291": {
+      "op": "frame_dig -2",
+      "stack_out": [
+        "notional_amount#0 (copy)"
+      ]
+    },
+    "293": {
+      "op": "frame_dig -4",
+      "stack_out": [
+        "notional_amount#0 (copy)",
+        "baseline_rate#0 (copy)"
+      ]
+    },
+    "295": {
+      "op": "frame_dig -1",
+      "stack_out": [
+        "notional_amount#0 (copy)",
+        "baseline_rate#0 (copy)",
+        "duration_days#0 (copy)"
+      ]
+    },
+    "297": {
+      "callsub": "smart_contracts.fx_hedge.contract.FXHedgeContract.calculate_premium",
+      "op": "callsub calculate_premium",
+      "defined_out": [
+        "premium#0"
+      ],
+      "stack_out": [
+        "premium#0"
+      ]
+    },
+    "300": {
+      "op": "pop",
+      "stack_out": []
+    },
+    "301": {
+      "op": "pushbytes \"Contract created successfully\"",
+      "defined_out": [
+        "\"Contract created successfully\""
+      ],
+      "stack_out": [
+        "\"Contract created successfully\""
+      ]
+    },
+    "332": {
+      "retsub": true,
+      "op": "retsub"
+    },
+    "333": {
+      "subroutine": "smart_contracts.fx_hedge.contract.FXHedgeContract.calculate_premium",
+      "params": {
+        "notional_amount#0": "uint64",
+        "target_rate#0": "uint64",
+        "duration_days#0": "uint64"
+      },
+      "block": "calculate_premium",
+      "stack_in": [],
+      "op": "proto 3 1"
+    },
+    "336": {
+      "op": "pushbytes \"\"",
+      "stack_out": [
+        "left#0"
+      ]
+    },
+    "338": {
+      "op": "dupn 3",
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0"
+      ]
+    },
+    "340": {
+      "op": "frame_dig -1",
+      "defined_out": [
+        "duration_days#0 (copy)"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "duration_days#0 (copy)"
+      ]
+    },
+    "342": {
+      "op": "intc_2 // 10000",
+      "defined_out": [
+        "10000",
+        "duration_days#0 (copy)"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "duration_days#0 (copy)",
+        "10000"
+      ]
+    },
+    "343": {
+      "op": "*",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "tmp%0#0"
+      ]
+    },
+    "344": {
+      "op": "pushint 365 // 365",
+      "defined_out": [
+        "365",
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "tmp%0#0",
+        "365"
+      ]
+    },
+    "347": {
+      "op": "/",
+      "defined_out": [
+        "T_frac#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0"
+      ]
+    },
+    "348": {
+      "op": "dup",
+      "defined_out": [
+        "T_frac#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "T_frac#0"
+      ]
+    },
+    "349": {
+      "op": "bnz calculate_premium_after_if_else@3",
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0"
+      ]
+    },
+    "352": {
+      "op": "intc_1 // 0",
+      "defined_out": [
+        "T_frac#0",
+        "sqrt_T#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "sqrt_T#0"
+      ]
+    },
+    "353": {
+      "block": "calculate_premium_after_inlined_smart_contracts.fx_hedge.contract.FXHedgeContract._integer_sqrt@13",
+      "stack_in": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "sqrt_T#0"
+      ],
+      "op": "frame_dig -3",
+      "defined_out": [
+        "notional_amount#0 (copy)"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "sqrt_T#0",
+        "notional_amount#0 (copy)"
+      ]
+    },
+    "355": {
+      "op": "pushint 3700 // 3700",
+      "defined_out": [
+        "3700",
+        "notional_amount#0 (copy)"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "sqrt_T#0",
+        "notional_amount#0 (copy)",
+        "3700"
+      ]
+    },
+    "358": {
+      "op": "*",
+      "defined_out": [
+        "tmp%1#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "sqrt_T#0",
+        "tmp%1#0"
+      ]
+    },
+    "359": {
+      "op": "pushint 2500 // 2500",
+      "defined_out": [
+        "2500",
+        "tmp%1#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "sqrt_T#0",
+        "tmp%1#0",
+        "2500"
+      ]
+    },
+    "362": {
+      "op": "*",
+      "defined_out": [
+        "tmp%2#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "sqrt_T#0",
+        "tmp%2#0"
+      ]
+    },
+    "363": {
+      "op": "*",
+      "defined_out": [
+        "tmp%3#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "tmp%3#0"
+      ]
+    },
+    "364": {
+      "op": "frame_dig -2",
+      "defined_out": [
+        "target_rate#0 (copy)",
+        "tmp%3#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "tmp%3#0",
+        "target_rate#0 (copy)"
+      ]
+    },
+    "366": {
+      "op": "*",
+      "defined_out": [
+        "numerator#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "numerator#0"
+      ]
+    },
+    "367": {
+      "op": "pushint 10000000000 // 10000000000",
+      "defined_out": [
+        "10000000000",
+        "numerator#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "numerator#0",
+        "10000000000"
+      ]
+    },
+    "373": {
+      "op": "/",
+      "defined_out": [
+        "premium#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "premium#0"
+      ]
+    },
+    "374": {
+      "op": "frame_bury 0"
+    },
+    "376": {
+      "retsub": true,
+      "op": "retsub"
+    },
+    "377": {
+      "block": "calculate_premium_after_if_else@3",
+      "stack_in": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0"
+      ],
+      "op": "intc_0 // 1",
+      "defined_out": [
+        "left#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "left#0"
+      ]
+    },
+    "378": {
+      "op": "frame_bury 0",
+      "defined_out": [
+        "left#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0"
+      ]
+    },
+    "380": {
+      "op": "frame_dig 4",
+      "defined_out": [
+        "left#0",
+        "right#1"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "right#1"
+      ]
+    },
+    "382": {
+      "op": "frame_bury 2",
+      "defined_out": [
+        "left#0",
+        "right#1"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0"
+      ]
+    },
+    "384": {
+      "block": "calculate_premium_while_top@4",
+      "stack_in": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0"
+      ],
+      "op": "frame_dig 0",
+      "defined_out": [
+        "left#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "left#0"
+      ]
+    },
+    "386": {
+      "op": "frame_dig 2",
+      "defined_out": [
+        "left#0",
+        "right#1"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "left#0",
+        "right#1"
+      ]
+    },
+    "388": {
+      "op": "<=",
+      "defined_out": [
+        "left#0",
+        "right#1",
+        "tmp%1#1"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "tmp%1#1"
+      ]
+    },
+    "389": {
+      "op": "bz calculate_premium_after_while@12",
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0"
+      ]
+    },
+    "392": {
+      "op": "frame_dig 0",
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "left#0"
+      ]
+    },
+    "394": {
+      "op": "frame_dig 2",
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "left#0",
+        "right#1"
+      ]
+    },
+    "396": {
+      "op": "+",
+      "defined_out": [
+        "left#0",
+        "right#1",
+        "tmp%2#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "tmp%2#0"
+      ]
+    },
+    "397": {
+      "op": "pushint 2 // 2",
+      "defined_out": [
+        "2",
+        "left#0",
+        "right#1",
+        "tmp%2#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "tmp%2#0",
+        "2"
+      ]
+    },
+    "399": {
+      "op": "/",
+      "defined_out": [
+        "left#0",
+        "mid#0",
+        "right#1"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "mid#0"
+      ]
+    },
+    "400": {
+      "op": "dup",
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "mid#0",
+        "mid#0"
+      ]
+    },
+    "401": {
+      "op": "frame_bury 1",
+      "defined_out": [
+        "left#0",
+        "mid#0",
+        "right#1"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "mid#0"
+      ]
+    },
+    "403": {
+      "op": "dup",
+      "defined_out": [
+        "left#0",
+        "mid#0",
+        "mid#0 (copy)",
+        "right#1"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "mid#0 (copy)",
+        "mid#0"
+      ]
+    },
+    "404": {
+      "op": "*",
+      "defined_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "square#0"
+      ]
+    },
+    "405": {
+      "op": "dup",
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "square#0",
+        "square#0"
+      ]
+    },
+    "406": {
+      "op": "frame_bury 3",
+      "defined_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "square#0"
+      ]
+    },
+    "408": {
+      "op": "frame_dig 4",
+      "defined_out": [
+        "T_frac#0",
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "square#0",
+        "T_frac#0"
+      ]
+    },
+    "410": {
+      "op": "==",
+      "defined_out": [
+        "T_frac#0",
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "tmp%3#1"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "tmp%3#1"
+      ]
+    },
+    "411": {
+      "op": "bz calculate_premium_else_body@7",
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0"
+      ]
+    },
+    "414": {
+      "op": "frame_dig 1",
+      "defined_out": [
+        "T_frac#0",
+        "left#0",
+        "mid#0",
+        "right#1",
+        "sqrt_T#0",
+        "square#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "sqrt_T#0"
+      ]
+    },
+    "416": {
+      "op": "b calculate_premium_after_inlined_smart_contracts.fx_hedge.contract.FXHedgeContract._integer_sqrt@13"
+    },
+    "419": {
+      "block": "calculate_premium_else_body@7",
+      "stack_in": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0"
+      ],
+      "op": "frame_dig 3",
+      "defined_out": [
+        "square#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "square#0"
+      ]
+    },
+    "421": {
+      "op": "frame_dig 4",
+      "defined_out": [
+        "T_frac#0",
+        "square#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "square#0",
+        "T_frac#0"
+      ]
+    },
+    "423": {
+      "op": "<",
+      "defined_out": [
+        "T_frac#0",
+        "square#0",
+        "tmp%4#1"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "tmp%4#1"
+      ]
+    },
+    "424": {
+      "op": "bz calculate_premium_else_body@9",
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0"
+      ]
+    },
+    "427": {
+      "op": "frame_dig 1",
+      "defined_out": [
+        "T_frac#0",
+        "mid#0",
+        "square#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "mid#0"
+      ]
+    },
+    "429": {
+      "op": "intc_0 // 1",
+      "defined_out": [
+        "1",
+        "T_frac#0",
+        "mid#0",
+        "square#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "mid#0",
+        "1"
+      ]
+    },
+    "430": {
+      "op": "+",
+      "defined_out": [
+        "T_frac#0",
+        "left#0",
+        "mid#0",
+        "square#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "left#0"
+      ]
+    },
+    "431": {
+      "op": "frame_bury 0",
+      "defined_out": [
+        "T_frac#0",
+        "left#0",
+        "mid#0",
+        "square#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0"
+      ]
+    },
+    "433": {
+      "op": "b calculate_premium_while_top@4"
+    },
+    "436": {
+      "block": "calculate_premium_else_body@9",
+      "stack_in": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0"
+      ],
+      "op": "frame_dig 1",
+      "defined_out": [
+        "mid#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "mid#0"
+      ]
+    },
+    "438": {
+      "op": "intc_0 // 1",
+      "defined_out": [
+        "1",
+        "mid#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "mid#0",
+        "1"
+      ]
+    },
+    "439": {
+      "op": "-",
+      "defined_out": [
+        "mid#0",
+        "right#1"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "right#1"
+      ]
+    },
+    "440": {
+      "op": "frame_bury 2",
+      "defined_out": [
+        "mid#0",
+        "right#1"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0"
+      ]
+    },
+    "442": {
+      "op": "b calculate_premium_while_top@4"
+    },
+    "445": {
+      "block": "calculate_premium_after_while@12",
+      "stack_in": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0"
+      ],
+      "op": "frame_dig 2",
+      "defined_out": [
+        "sqrt_T#0"
+      ],
+      "stack_out": [
+        "left#0",
+        "mid#0",
+        "right#1",
+        "square#0",
+        "T_frac#0",
+        "sqrt_T#0"
+      ]
+    },
+    "447": {
+      "op": "b calculate_premium_after_inlined_smart_contracts.fx_hedge.contract.FXHedgeContract._integer_sqrt@13"
+    },
+    "450": {
+      "subroutine": "smart_contracts.fx_hedge.contract.FXHedgeContract.simulate_settlement",
+      "params": {
+        "target_rate#0": "uint64",
+        "actual_rate#0": "uint64",
+        "notional_amount#0": "uint64"
+      },
+      "block": "simulate_settlement",
+      "stack_in": [],
+      "op": "proto 3 1"
+    },
+    "453": {
+      "op": "frame_dig -2",
+      "defined_out": [
+        "actual_rate#0 (copy)"
+      ],
+      "stack_out": [
+        "actual_rate#0 (copy)"
+      ]
+    },
+    "455": {
+      "op": "frame_dig -3",
+      "defined_out": [
+        "actual_rate#0 (copy)",
+        "target_rate#0 (copy)"
+      ],
+      "stack_out": [
+        "actual_rate#0 (copy)",
+        "target_rate#0 (copy)"
+      ]
+    },
+    "457": {
+      "op": "<=",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "458": {
+      "op": "bz simulate_settlement_else_body@2",
+      "stack_out": []
+    },
+    "461": {
+      "op": "pushbytes \"Contract would fail - rate did not improve sufficiently\"",
+      "defined_out": [
+        "\"Contract would fail - rate did not improve sufficiently\""
+      ],
+      "stack_out": [
+        "\"Contract would fail - rate did not improve sufficiently\""
+      ]
+    },
+    "518": {
+      "retsub": true,
+      "op": "retsub"
+    },
+    "519": {
+      "block": "simulate_settlement_else_body@2",
+      "stack_in": [],
+      "op": "pushbytes \"Contract would succeed - rate improved as expected\"",
+      "defined_out": [
+        "\"Contract would succeed - rate improved as expected\""
+      ],
+      "stack_out": [
+        "\"Contract would succeed - rate improved as expected\""
+      ]
+    },
+    "571": {
+      "retsub": true,
+      "op": "retsub"
+    },
+    "572": {
+      "subroutine": "smart_contracts.fx_hedge.contract.FXHedgeContract.calculate_payout",
+      "params": {
+        "target_rate#0": "uint64",
+        "actual_rate#0": "uint64",
+        "notional_amount#0": "uint64"
+      },
+      "block": "calculate_payout",
+      "stack_in": [],
+      "op": "proto 3 1"
+    },
+    "575": {
+      "op": "frame_dig -2",
+      "defined_out": [
+        "actual_rate#0 (copy)"
+      ],
+      "stack_out": [
+        "actual_rate#0 (copy)"
+      ]
+    },
+    "577": {
+      "op": "frame_dig -3",
+      "defined_out": [
+        "actual_rate#0 (copy)",
+        "target_rate#0 (copy)"
+      ],
+      "stack_out": [
+        "actual_rate#0 (copy)",
+        "target_rate#0 (copy)"
+      ]
+    },
+    "579": {
+      "op": "<=",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "580": {
+      "op": "bz calculate_payout_after_if_else@2",
+      "stack_out": []
+    },
+    "583": {
+      "op": "intc_1 // 0",
+      "defined_out": [
+        "0"
+      ],
+      "stack_out": [
+        "0"
+      ]
+    },
+    "584": {
+      "retsub": true,
+      "op": "retsub"
+    },
+    "585": {
+      "block": "calculate_payout_after_if_else@2",
+      "stack_in": [],
+      "op": "frame_dig -2",
+      "defined_out": [
+        "actual_rate#0 (copy)"
+      ],
+      "stack_out": [
+        "actual_rate#0 (copy)"
+      ]
+    },
+    "587": {
+      "op": "frame_dig -3",
+      "defined_out": [
+        "actual_rate#0 (copy)",
+        "target_rate#0 (copy)"
+      ],
+      "stack_out": [
+        "actual_rate#0 (copy)",
+        "target_rate#0 (copy)"
+      ]
+    },
+    "589": {
+      "op": "-",
+      "defined_out": [
+        "rate_improvement#0"
+      ],
+      "stack_out": [
+        "rate_improvement#0"
+      ]
+    },
+    "590": {
+      "op": "frame_dig -1",
+      "defined_out": [
+        "notional_amount#0 (copy)",
+        "rate_improvement#0"
+      ],
+      "stack_out": [
+        "rate_improvement#0",
+        "notional_amount#0 (copy)"
+      ]
+    },
+    "592": {
+      "op": "*",
+      "defined_out": [
+        "numerator#0"
+      ],
+      "stack_out": [
+        "numerator#0"
+      ]
+    },
+    "593": {
+      "op": "frame_dig -3",
+      "stack_out": [
+        "numerator#0",
+        "target_rate#0 (copy)"
+      ]
+    },
+    "595": {
+      "op": "intc_2 // 10000",
+      "defined_out": [
+        "10000",
+        "numerator#0",
+        "target_rate#0 (copy)"
+      ],
+      "stack_out": [
+        "numerator#0",
+        "target_rate#0 (copy)",
+        "10000"
+      ]
+    },
+    "596": {
+      "op": "*",
+      "defined_out": [
+        "denominator#0",
+        "numerator#0"
+      ],
+      "stack_out": [
+        "numerator#0",
+        "denominator#0"
+      ]
+    },
+    "597": {
+      "op": "/",
+      "defined_out": [
+        "payout#0"
+      ],
+      "stack_out": [
+        "payout#0"
+      ]
+    },
+    "598": {
+      "retsub": true,
+      "op": "retsub"
+    },
+    "599": {
+      "subroutine": "smart_contracts.fx_hedge.contract.FXHedgeContract.get_contract_summary",
+      "params": {
+        "baseline_rate#0": "uint64",
+        "target_rate#0": "uint64",
+        "notional_amount#0": "uint64",
+        "duration_days#0": "uint64"
+      },
+      "block": "get_contract_summary",
+      "stack_in": [],
+      "op": "proto 4 1"
+    },
+    "602": {
+      "op": "frame_dig -2",
+      "defined_out": [
+        "notional_amount#0 (copy)"
+      ],
+      "stack_out": [
+        "notional_amount#0 (copy)"
+      ]
+    },
+    "604": {
+      "op": "frame_dig -4",
+      "defined_out": [
+        "baseline_rate#0 (copy)",
+        "notional_amount#0 (copy)"
+      ],
+      "stack_out": [
+        "notional_amount#0 (copy)",
+        "baseline_rate#0 (copy)"
+      ]
+    },
+    "606": {
+      "op": "frame_dig -1",
+      "defined_out": [
+        "baseline_rate#0 (copy)",
+        "duration_days#0 (copy)",
+        "notional_amount#0 (copy)"
+      ],
+      "stack_out": [
+        "notional_amount#0 (copy)",
+        "baseline_rate#0 (copy)",
+        "duration_days#0 (copy)"
+      ]
+    },
+    "608": {
+      "callsub": "smart_contracts.fx_hedge.contract.FXHedgeContract.calculate_premium",
+      "op": "callsub calculate_premium",
+      "defined_out": [
+        "premium#0"
+      ],
+      "stack_out": [
+        "premium#0"
+      ]
+    },
+    "611": {
+      "op": "pop",
+      "stack_out": []
+    },
+    "612": {
+      "op": "pushbytes \"Contract summary calculated successfully\"",
+      "defined_out": [
+        "\"Contract summary calculated successfully\""
+      ],
+      "stack_out": [
+        "\"Contract summary calculated successfully\""
+      ]
+    },
+    "654": {
+      "retsub": true,
+      "op": "retsub"
+    },
+    "655": {
+      "subroutine": "smart_contracts.fx_hedge.contract.FXHedgeContract.convert_rate_to_decimal",
+      "params": {
+        "rate_scaled#0": "uint64"
+      },
+      "block": "convert_rate_to_decimal",
+      "stack_in": [],
+      "op": "proto 1 1"
+    },
+    "658": {
+      "op": "frame_dig -1",
+      "defined_out": [
+        "rate_scaled#0 (copy)"
+      ],
+      "stack_out": [
+        "rate_scaled#0 (copy)"
+      ]
+    },
+    "660": {
+      "op": "intc_2 // 10000",
+      "defined_out": [
+        "10000",
+        "rate_scaled#0 (copy)"
+      ],
+      "stack_out": [
+        "rate_scaled#0 (copy)",
+        "10000"
+      ]
+    },
+    "661": {
+      "op": "/",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "662": {
+      "retsub": true,
+      "op": "retsub"
+    }
+  }
+}

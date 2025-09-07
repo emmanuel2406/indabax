@@ -25,7 +25,7 @@ const ContractContext = createContext<ContractContextType | undefined>(undefined
 // Color palette for different baseline rates
 const COLOR_PALETTE = [
   '#3B82F6', // Blue
-  '#10B981', // Green
+  '#F472B6', // Pink
   '#F59E0B', // Yellow
   '#EF4444', // Red
   '#8B5CF6', // Purple

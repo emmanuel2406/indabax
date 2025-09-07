@@ -9,6 +9,7 @@ import indabaxLogo from '../assets/indabax-logo.png'
 const Dashboard: React.FC = () => {
   const [openWalletModal, setOpenWalletModal] = useState<boolean>(false)
   const { activeAddress } = useWallet()
+  const [openContractModal, setOpenContractModal] = useState<boolean>(false)
 
   const toggleWalletModal = () => {
     setOpenWalletModal(!openWalletModal)
@@ -19,15 +20,15 @@ const Dashboard: React.FC = () => {
     return (
       <>
         <UserWallet />
-        <FXHedge openModal={false} setModalState={() => {}} />
+        <FXHedge openModal={openContractModal} setModalState={setOpenContractModal} />
       </>
     )
   }
 
   // If no wallet connected, show connection prompt
   return (
-    <div className="hero min-h-screen bg-gradient-to-br from-gray-900 to-black">
-      <div className="hero-content text-center rounded-lg p-8 max-w-2xl bg-gray-900 mx-auto shadow-2xl border border-pink-500/20">
+    <div className="hero min-h-screen bg-animated noise-overlay">
+      <div className="hero-content text-center rounded-lg p-8 max-w-2xl glass-card mx-auto">
         <div className="max-w-2xl">
           {/* Logo Section */}
           <div className="flex flex-col items-center justify-center mb-8">
@@ -35,27 +36,23 @@ const Dashboard: React.FC = () => {
               <img
                 src={indabaxLogo}
                 alt="IndabaX Logo"
-                className="w-24 h-24 filter brightness-0 invert relative z-10"
-                style={{
-                  filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%)'
-                }}
+                className="w-24 h-24 relative z-10"
               />
-              <div className="absolute inset-0 w-24 h-24 bg-pink-500/20 rounded-full blur-lg"></div>
             </div>
             <div className="text-center">
-              <h1 className="text-5xl font-bold text-pink-400 mb-2">
+              <h1 className="text-5xl font-bold text-gradient-primary mb-2">
                 IndabaX
               </h1>
-              <p className="text-lg text-pink-300/80 font-medium">
+              <p className="text-lg text-muted-foreground font-medium">
                 Democratizing Prosperity
               </p>
             </div>
           </div>
 
-          <h2 className="text-3xl font-bold text-white mb-4">
+          <h2 className="text-3xl font-bold text-foreground mb-4">
             Welcome to FX Hedge Platform
           </h2>
-          <p className="py-6 text-lg text-gray-300">
+          <p className="py-6 text-lg text-muted-foreground">
             SME Currency Risk Management Platform built on Algorand.
             Connect your wallet to access the FX hedging platform.
           </p>
@@ -64,27 +61,27 @@ const Dashboard: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <button
                 data-test-id="connect-wallet"
-                className="btn btn-lg bg-pink-500 hover:bg-pink-600 text-white border-pink-500 hover:border-pink-600"
+                className="btn btn-lg btn-metallic-primary text-primary-foreground"
                 onClick={toggleWalletModal}
               >
                 Connect Wallet to Access Platform
               </button>
             </div>
 
-            <div className="divider text-pink-400">Features</div>
+            <div className="divider text-muted-foreground">Features</div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
-              <div className="card bg-gray-800 border border-pink-500/20 p-4">
-                <h3 className="font-semibold text-pink-400">Smart Contracts</h3>
-                <p className="text-sm text-gray-300">Automated FX hedging with transparent settlement</p>
+              <div className="card glass-surface p-4">
+                <h3 className="font-semibold text-foreground">Smart Contracts</h3>
+                <p className="text-sm text-muted-foreground">Automated FX hedging with transparent settlement</p>
               </div>
-              <div className="card bg-gray-800 border border-pink-500/20 p-4">
-                <h3 className="font-semibold text-pink-400">Risk Management</h3>
-                <p className="text-sm text-gray-300">Protect your business from currency volatility</p>
+              <div className="card glass-surface p-4">
+                <h3 className="font-semibold text-foreground">Risk Management</h3>
+                <p className="text-sm text-muted-foreground">Protect your business from currency volatility</p>
               </div>
-              <div className="card bg-gray-800 border border-pink-500/20 p-4">
-                <h3 className="font-semibold text-pink-400">Transparent Pricing</h3>
-                <p className="text-sm text-gray-300">Fixed premiums with no hidden fees</p>
+              <div className="card glass-surface p-4">
+                <h3 className="font-semibold text-foreground">Transparent Pricing</h3>
+                <p className="text-sm text-muted-foreground">Fixed premiums with no hidden fees</p>
               </div>
             </div>
           </div>
