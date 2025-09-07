@@ -1,14 +1,14 @@
 import { AlgorandClient } from '@algorandfoundation/algokit-utils'
-import { HelloWorldFactory } from '../artifacts/hello_world/HelloWorldClient'
+import { FxHedgeContractFactory } from '../artifacts/fx_hedge/FXHedgeContractClient'
 
-// Below is a showcase of various deployment options you can use in TypeScript Client
+// Deploy the FX Hedging Smart Contract
 export async function deploy() {
-  console.log('=== Deploying HelloWorld ===')
+  console.log('=== Deploying FX Hedge Contract ===')
 
   const algorand = AlgorandClient.fromEnvironment()
   const deployer = await algorand.account.fromEnvironment('DEPLOYER')
 
-  const factory = algorand.client.getTypedAppFactory(HelloWorldFactory, {
+  const factory = algorand.client.getTypedAppFactory(FxHedgeContractFactory, {
     defaultSender: deployer.addr,
   })
 
@@ -23,11 +23,7 @@ export async function deploy() {
     })
   }
 
-  const method = 'hello'  
-  const response = await appClient.send.hello({
-    args: { name: 'world' },
-  })
   console.log(
-    `Called ${method} on ${appClient.appClient.appName} (${appClient.appClient.appId}) with name = world, received: ${response.return}`,
+    `FX Hedge Contract deployed successfully at address: ${appClient.appAddress} with app ID: ${appClient.appClient.appId}`,
   )
 }
