@@ -6,6 +6,11 @@ Our project provides FX risk protection for businesses in emerging markets that 
 
 We solve this by offering a parametric FX insurance contract on Algorand. SMEs pay a small upfront premium, and if the exchange rate moves beyond an agreed threshold, the policy automatically pays out in USD stablecoins. This gives SMEs certainty — they know their maximum downside in advance — while also keeping premiums affordable.
 
+## Demo 
+
+[![Watch the demo](https://www.loom.com/share/71793f1fb6af45efb856f7caa5005cd4?sid=b21643e4-a696-44e3-b595-5e3475460b23)
+
+
 ## Prerequisites
 
 - [Docker](https://www.docker.com/) installed and operational
