@@ -1,8 +1,12 @@
 import { SupportedWallet, WalletId, WalletManager, WalletProvider } from '@txnlab/use-wallet-react'
 import { SnackbarProvider } from 'notistack'
-import Home from './Home'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import Dashboard from './components/Dashboard'
+import Login from './components/Login'
+import { Toast } from './components/Toast'
 import { getAlgodConfigFromViteEnvironment, getKmdConfigFromViteEnvironment } from './utils/network/getAlgoClientConfigs'
 import { ContractProvider } from './contexts/ContractContext'
+import { ToastProvider } from './contexts/ToastContext'
 
 let supportedWallets: SupportedWallet[]
 if (import.meta.env.VITE_ALGOD_NETWORK === 'localnet') {
@@ -51,7 +55,16 @@ export default function App() {
     <SnackbarProvider maxSnack={3}>
       <WalletProvider manager={walletManager}>
         <ContractProvider>
-          <Home />
+          <ToastProvider>
+            <Router>
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/" element={<Navigate to="/login" replace />} />
+            </Routes>
+              <Toast />
+            </Router>
+          </ToastProvider>
         </ContractProvider>
       </WalletProvider>
     </SnackbarProvider>
