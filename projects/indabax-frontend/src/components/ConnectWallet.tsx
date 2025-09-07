@@ -13,8 +13,8 @@ const ConnectWallet = ({ openModal, closeModal }: ConnectWalletInterface) => {
 
   return (
     <dialog id="connect_wallet_modal" className={`modal ${openModal ? 'modal-open' : ''}`}style={{ display: openModal ? 'block' : 'none' }}>
-      <form method="dialog" className="modal-box">
-        <h3 className="font-bold text-2xl">Select wallet provider</h3>
+      <form method="dialog" className="modal-box bg-gradient-to-br from-gray-800 to-gray-900 border border-pink-500/20">
+        <h3 className="font-bold text-2xl text-pink-400">Select wallet provider</h3>
 
         <div className="grid m-2 pt-5">
           {activeAddress && (
@@ -28,7 +28,7 @@ const ConnectWallet = ({ openModal, closeModal }: ConnectWalletInterface) => {
             wallets?.map((wallet) => (
               <button
                 data-test-id={`${wallet.id}-connect`}
-                className="btn border-teal-800 border-1  m-2"
+                className="btn bg-pink-500 hover:bg-pink-600 text-white border-pink-500 hover:border-pink-600 m-2"
                 key={`provider-${wallet.id}`}
                 onClick={() => {
                   return wallet.connect()
@@ -49,7 +49,7 @@ const ConnectWallet = ({ openModal, closeModal }: ConnectWalletInterface) => {
         <div className="modal-action grid">
           <button
             data-test-id="close-wallet-modal"
-            className="btn"
+            className="btn bg-gray-700 hover:bg-gray-600 text-white border-gray-600 hover:border-gray-500"
             onClick={() => {
               closeModal()
             }}
@@ -58,7 +58,7 @@ const ConnectWallet = ({ openModal, closeModal }: ConnectWalletInterface) => {
           </button>
           {activeAddress && (
             <button
-              className="btn btn-warning"
+              className="btn bg-pink-500 hover:bg-pink-600 text-white border-pink-500 hover:border-pink-600"
               data-test-id="logout"
               onClick={async () => {
                 if (wallets) {

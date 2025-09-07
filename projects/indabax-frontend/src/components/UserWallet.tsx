@@ -63,9 +63,9 @@ const UserWallet: React.FC<UserWalletProps> = ({ onPremiumDeduction, onSettlemen
 
   return (
     <div className="fixed top-4 right-4 z-50">
-      <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-4 min-w-[280px]">
+      <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg shadow-lg border border-pink-500/20 p-4 min-w-[280px]">
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-lg font-semibold text-gray-800">Wallet</h3>
+          <h3 className="text-lg font-semibold text-pink-400">Wallet</h3>
           <div className="w-2 h-2 bg-green-500 rounded-full"></div>
         </div>
 
@@ -86,14 +86,14 @@ const UserWallet: React.FC<UserWalletProps> = ({ onPremiumDeduction, onSettlemen
           </div>
 
           {/* USD Balance */}
-          <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
+          <div className="bg-yellow-100 rounded-lg p-3 border border-yellow-300">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-blue-800">Target Currency</p>
-                <p className="text-xs text-blue-600">US Dollar</p>
+                <p className="text-sm font-medium text-yellow-800">Target Currency</p>
+                <p className="text-xs text-yellow-700">US Dollar</p>
               </div>
               <div className="text-right">
-                <p className="text-lg font-bold text-blue-700">
+                <p className="text-lg font-bold text-yellow-800">
                   {formatCurrency(balances.usd, 'USD')}
                 </p>
               </div>
@@ -102,9 +102,9 @@ const UserWallet: React.FC<UserWalletProps> = ({ onPremiumDeduction, onSettlemen
         </div>
 
         {/* Wallet Address */}
-        <div className="mt-3 pt-3 border-t border-gray-200">
-          <p className="text-xs text-gray-500 mb-1">Connected Address:</p>
-          <p className="text-xs font-mono text-gray-700 break-all">
+        <div className="mt-3 pt-3 border-t border-gray-600">
+          <p className="text-xs text-gray-400 mb-1">Connected Address:</p>
+          <p className="text-xs font-mono text-gray-300 break-all">
             {activeAddress.slice(0, 8)}...{activeAddress.slice(-8)}
           </p>
         </div>
