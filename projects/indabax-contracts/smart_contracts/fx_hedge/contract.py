@@ -52,10 +52,12 @@ class FXHedgeContract(ARC4Contract):
         # Calculate time fraction T/365
         T_frac = duration_days * 10000 // DAYS_PER_YEAR  # Scale by 10000 for precision
         sqrt_T = self._integer_sqrt(T_frac)
-        # Core formula: N * sigma * sqrt(T/365) * alpha
-        # Formula: (N * sigma_bps * alpha_bps * sqrt_T) / (BPS_SCALE * BPS_SCALE)
-        numerator = notional_amount * sigma_bps * alpha_bps * sqrt_T
-        denominator = BPS_SCALE * BPS_SCALE
+
+        # Core formula: N * sigma * sqrt(T/365) * alpha * (baseline_rate / 10000)
+        # The baseline_rate is used to scale the premium based on the current exchange rate
+        # Formula: (N * sigma_bps * alpha_bps * sqrt_T * baseline_rate) / (BPS_SCALE * BPS_SCALE * BPS_SCALE)
+        numerator = notional_amount * sigma_bps * alpha_bps * sqrt_T * baseline_rate
+        denominator = BPS_SCALE * BPS_SCALE * BPS_SCALE
 
         premium = numerator // denominator
         return premium
@@ -104,22 +106,31 @@ class FXHedgeContract(ARC4Contract):
     @abimethod()
     def calculate_payout(
         self,
-        target_rate: UInt64,  # Rate with 4 decimal places
-        actual_rate: UInt64,  # Rate with 4 decimal places
-        notional_amount: UInt64
+        target_rate: UInt64,  # Rate with 4 decimal places (e.g., 1.5% = 150)
+        actual_rate: UInt64,  # Rate with 4 decimal places (e.g., 2.0% = 200)
+        notional_amount: UInt64  # Amount in base units (e.g., microAlgos)
     ) -> UInt64:
         """Calculate the payout amount if contract succeeds"""
         if actual_rate <= target_rate:
             return UInt64(0)
-        
+
         # Calculate the benefit from rate improvement
         rate_improvement = actual_rate - target_rate
-        # Convert notional to same precision as rates for calculation
-        notional_scaled = notional_amount * RATE_PRECISION
-        payout = (notional_scaled * rate_improvement) // (target_rate * RATE_PRECISION)
-        
+
+        # Since rates are scaled by 10000 (4 decimal places), we need to account for this
+        # Formula: (notional_amount * rate_improvement) / (target_rate * 10000)
+        # This gives us: (amount * rate_diff) / (base_rate * precision_factor)
+
+        # First multiply to get the full precision intermediate result
+        numerator = notional_amount * rate_improvement
+
+        # Then divide by target_rate and scale down by RATE_PRECISION (10000)
+        # to convert from the double-scaled result back to base units
+        RATE_PRECISION = UInt64(10000)
+        denominator = target_rate * RATE_PRECISION
+        payout = numerator // denominator
         return payout
-    
+
     @abimethod()
     def get_contract_summary(
         self,

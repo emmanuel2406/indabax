@@ -13,7 +13,6 @@ interface ContractFormProps {
   baselineRate: number
   premium: number
   loading: boolean
-  onCalculatePremium: () => void
   onCreateContract: () => void
 }
 
@@ -23,7 +22,6 @@ const ContractForm: React.FC<ContractFormProps> = ({
   baselineRate,
   premium,
   loading,
-  onCalculatePremium,
   onCreateContract
 }) => {
   return (
@@ -45,7 +43,7 @@ const ContractForm: React.FC<ContractFormProps> = ({
             <input
               type="number"
               step="0.0001"
-              placeholder="e.g., 19.0000"
+              placeholder={baselineRate > 0 ? baselineRate.toFixed(4) : 'Loading...'}
               className="input input-bordered w-full bg-gray-700 border-pink-500/30 text-white placeholder-gray-400"
               value={formData.targetRate}
               onChange={(e) => setFormData(prev => ({ ...prev, targetRate: e.target.value }))}
@@ -74,22 +72,19 @@ const ContractForm: React.FC<ContractFormProps> = ({
           </div>
         </div>
 
-        <div className="mt-4 flex gap-4">
-          <button
-            className="btn bg-pink-500 hover:bg-pink-600 text-white border-pink-500 hover:border-pink-600"
-            onClick={onCalculatePremium}
-            disabled={!formData.notionalAmount || !baselineRate}
-          >
-            Calculate Premium
-          </button>
-          {premium > 0 && (
-            <div className="flex items-center">
+        {/* Premium Display - Automatically shown when calculated */}
+        {premium > 0 && (
+          <div className="mt-4 p-4 bg-pink-500/10 border border-pink-500/30 rounded-lg">
+            <div className="flex items-center justify-between">
               <span className="text-lg font-semibold text-pink-400">
                 Premium: R{premium.toLocaleString()}
               </span>
+              <span className="text-sm text-gray-400">
+                Automatically calculated
+              </span>
             </div>
-          )}
-        </div>
+          </div>
+        )}
 
         <div className="mt-6">
           <button

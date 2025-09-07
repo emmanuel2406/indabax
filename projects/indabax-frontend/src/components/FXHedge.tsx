@@ -1,6 +1,6 @@
 import { useWallet } from '@txnlab/use-wallet-react'
 import { useSnackbar } from 'notistack'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { FxHedgeContractFactory } from '../contracts/FXHedgeContract'
 import { OnSchemaBreak, OnUpdate } from '@algorandfoundation/algokit-utils/types/app'
 import { getAlgodConfigFromViteEnvironment, getIndexerConfigFromViteEnvironment } from '../utils/network/getAlgoClientConfigs'
@@ -55,8 +55,6 @@ const FXHedge = ({ openModal, setModalState }: FXHedgeInterface) => {
   }
 
   const calculatePremium = async () => {
-    if (!formData.notionalAmount) return
-
     const factory = new FxHedgeContractFactory({
       defaultSender: activeAddress ?? undefined,
       algorand,
@@ -69,20 +67,61 @@ const FXHedge = ({ openModal, setModalState }: FXHedgeInterface) => {
       })
 
       const { appClient } = deployResult
+
+      // Fix: Ensure proper integer conversion for baselineRate
+      const scaledBaselineRate = Math.round(baselineRate * RATE_PRECISION)
+
       const response = await appClient.send.calculatePremium({
         args: {
-          notionalAmount: BigInt(formData.notionalAmount)
+          notionalAmount: BigInt(formData.notionalAmount),
+          baselineRate: BigInt(scaledBaselineRate), // Use the rounded integer value
+          durationDays: BigInt(formData.durationDays)
         }
       })
 
-      setPremium(Number(response.return))
+      console.log('calculatePremium: Response received', response.return)
+      // Convert the scaled premium back to regular number and ensure it's an integer
+      const scaledPremium = Number(response.return)
+      const actualPremium = Math.round(scaledPremium / RATE_PRECISION)
+      console.log('calculatePremium: Scaled premium:', scaledPremium, 'Actual premium (integer):', actualPremium)
+      setPremium(actualPremium)
     } catch (e: any) {
+      console.error('calculatePremium: Error', e)
       enqueueSnackbar(`Error calculating premium: ${e.message}`, { variant: 'error' })
     }
   }
 
+  // Automatically calculate premium when form data changes
+  useEffect(() => {
+    console.log('useEffect: Checking conditions', {
+      notionalAmount: formData.notionalAmount,
+      baselineRate,
+      durationDays: formData.durationDays,
+      activeAddress: !!activeAddress
+    })
+
+    if (formData.notionalAmount && baselineRate && formData.durationDays && activeAddress) {
+      console.log('useEffect: All conditions met, calling calculatePremium')
+      calculatePremium()
+    } else {
+      console.log('useEffect: Conditions not met, setting premium to 0')
+      setPremium(0)
+    }
+  }, [formData.notionalAmount, baselineRate, formData.durationDays, activeAddress])
+
   const createContract = async () => {
     setLoading(true)
+
+    // Validate that target rate is greater than baseline rate
+    const targetRateFloat = parseFloat(formData.targetRate)
+    if (targetRateFloat <= baselineRate) {
+      enqueueSnackbar(
+        `Error: Target rate (${targetRateFloat.toFixed(4)}) must be greater than baseline rate (${baselineRate.toFixed(4)})`,
+        { variant: 'error' }
+      )
+      setLoading(false)
+      return
+    }
 
     try {
       const factory = new FxHedgeContractFactory({
@@ -299,7 +338,6 @@ const FXHedge = ({ openModal, setModalState }: FXHedgeInterface) => {
             baselineRate={baselineRate}
             premium={premium}
             loading={loading}
-            onCalculatePremium={calculatePremium}
             onCreateContract={createContract}
           />
       </div>
